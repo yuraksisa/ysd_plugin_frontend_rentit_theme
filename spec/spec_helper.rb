@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "ysd_plugin_booking_rentit_theme"
+require "ysd_plugin_frontend_rentit_theme"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

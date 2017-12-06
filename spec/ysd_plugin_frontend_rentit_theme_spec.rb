@@ -1,8 +1,8 @@
 require "spec_helper"
 
-RSpec.describe YsdPluginBookingRentitTheme do
+RSpec.describe YsdPluginFrontendRentitTheme do
   it "has a version number" do
-    expect(YsdPluginBookingRentitTheme::VERSION).not_to be nil
+    expect(YsdPluginFrontendRentitTheme::VERSION).not_to be nil
   end
 
   it "does something useful" do

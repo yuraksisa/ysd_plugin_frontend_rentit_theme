@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Yurak Sisa"]
   spec.email         = ["yurak.sisa.dream@gmail.com"]
 
-  spec.summary       = %q{Yito booking plugin theme}
-  spec.description   = %q{Yito booking plugin theme}
+  spec.summary       = %q{Yito frontend rentit theme plugin}
+  spec.description   = %q{Yito frontend rentit theme plugin}
   spec.homepage      = ""
 
   spec.files         = `git ls-files -z`.split("\x0")
