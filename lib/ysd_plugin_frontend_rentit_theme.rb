@@ -1,0 +1,9 @@
+require "ysd_plugin_frontend_rentit_theme/version"
+require "ysd_plugin_frontend_rentit_theme/sinatra/ysd_sinatra_frontend_rentit_theme"
+require "ysd_plugin_frontend_rentit_theme/yito_integration/ysd_plugin_frontend_rentit_theme_extension"
+
+require "ysd_plugin_frontend_rentit_theme/ysd_plugin_frontend_rentit_theme_init"
+
+module YsdPluginFrontendRentitTheme
+  # Your code goes here...
+end

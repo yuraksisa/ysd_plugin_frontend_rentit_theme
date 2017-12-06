@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title><%=site_title%></title>
+
+  <!-- JS -->
+  <script type="text/javascript" src="/rentit/js/require.min.js"></script>
+  <script type="text/javascript" src="/rentit/js/built.js"></script>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/rentit/css/style-public.css">
+  <link type="text/css" rel="stylesheet" href="/rentit/css/style-public-theme.css">
+  <!--link type="text/css" rel="stylesheet" href="/css/theme-cumin.css"-->
+  <link type="text/css" rel="stylesheet" href="/rentit/css/style-public-theme-extension.css">
+
+  <% if !page.styles_source.nil? && !page.styles_source.empty? %>
+      <%= page.styles_source %>
+  <% end %>
+
+  <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,300">
+  <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:700,800,900,400,300">
+  <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800">
+
+  <style type="text/css">
+    {% if css_header_background %}
+    .header .header-wrapper {
+      background-color: {{ css_header_background }};
+    }
+    {% endif %}
+  </style>
+
+  <!-- Head Libs -->
+  <!--script src="/rentit/js/modernizr.custom.js"></script-->
+
+  <!--[if lt IE 9]>
+  <script src="/rentit/js/iesupport/html5shiv.js"></script>
+  <script src="/rentit/js/iesupport/respond.min.js"></script>
+
+  <![endif]-->
+</head>
+<body id="home" class="wide">
+
+<!-- WRAPPER -->
+<div class="wrapper">
+
+  <%= partial :loader %>
+
+  <!-- HEADER -->
+  <header class="header fixed">
+    <div class="header-wrapper">
+      <div class="container">
+
+        <!-- Logo -->
+        <div class="logo">
+          <a href="<%=format_url_with_language('/')%>"><img src="<%=site_logo%>" alt="<%=site_title%>"/></a>
+        </div>
+        <!-- /Logo -->
+
+        <!-- Mobile menu toggle button -->
+        <a href="#" class="menu-toggle btn ripple-effect btn-theme-transparent"><i class="fa fa-bars"></i></a>
+        <!-- /Mobile menu toggle button -->
+
+        <!-- Navigation -->
+        <nav class="navigation closed clearfix">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <!-- navigation menu -->
+              <a href="#" class="menu-toggle-close btn"><i class="fa fa-times"></i></a>
+              <ul class="nav sf-menu">
+                <li class="active"><a href=<%=format_url_with_language('/')%>><%=t.front_end_reservation.home%></a>
+                </li>
+                <li><a href="<%=format_url_with_language('/renting_conditions')%>"><%=t.front_end_reservation.conditions%></a></li>
+                <!--li><a href="/contacto">Contacto</a></li-->
+                <% if (page.variables.has_key?(:languages_translation) and not page.variables[:languages_translation].empty?) %>
+                    <div class="translation_language">
+                      <%= page.variables[:languages_translation]%>
+                    </div>
+                <% end %>
+              </ul>
+              <!-- /navigation menu -->
+            </div>
+          </div>
+          <!-- Add Scroll Bar -->
+          <div class="swiper-scrollbar"></div>
+        </nav>
+        <!-- /Navigation -->
+
+      </div>
+    </div>
+  </header>
+  <!-- /HEADER -->
+
+  <!-- CONTENT AREA -->
+  <div class="content-area">
+
+
+    <!-- BREADCRUMBS -->
+    <% unless page.title.nil? || page.title.empty? %>
+        <section class="page-section breadcrumbs text-center">
+          <div class="container">
+            <div class="page-header">
+              <h1><%=page.title%></h1>
+            </div>
+          </div>
+        </section>
+    <% end %>
+    <!-- /BREADCRUMBS -->
+
+    <!-- PAGE : Booking selector -->
+    <% if (page.variables.has_key?(:booking_selector) and not page.variables[:booking_selector].empty?) %>
+        <section class="booking-selector page-section dark">
+          <div class="container">
+            <%= page.variables[:booking_selector] %>
+          </div>
+        </section>
+    <% end %>
+
+    <!-- PAGE -->
+    <section class="page-section">
+      <div class="container">
+
+        <%= partial :flash_messages %>
+        <%= page.content %>
+
+        <% if (page.variables.has_key?(:primary_links_menu) and not page.variables[:primary_links_menu].empty?) %>
+            <%= page.variables[:primary_links_menu]%>
+        <% end %>
+
+      </div>
+    </section>
+
+  </div>
+  <!-- /CONTENT AREA -->
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-meta">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-sm-12">
+            <div class="copyright">&copy; 2017 mybooking</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- /FOOTER -->
+
+  <div id="to-top" class="to-top"><i class="fa fa-angle-up"></i></div>
+
+</div>
+<!-- /WRAPPER -->
+
+<!-- JS Page Level -->
+<script src="/rentit/js/theme.js"></script>
+
+<% if !page.scripts_source.nil? && !page.scripts_source.empty? %>
+    <%= page.scripts_source %>
+<% end %>
+
+</body>
+</html>
