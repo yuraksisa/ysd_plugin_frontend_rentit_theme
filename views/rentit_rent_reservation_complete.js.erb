@@ -1,6 +1,7 @@
 require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
         'ysdtemplate', 'jquery.formparams','jquery.form',
-	     'jquery.validate', 'jquery.ui', 'jquery.ui.datepicker-es', 
+	     'jquery.validate', 'jquery.ui', 'jquery.ui.datepicker-es',
+        'jquery.ui.datepicker-ca','jquery.ui.datepicker-en','jquery.ui.datepicker-it',
 	     'jquery.ui.datepicker.validation', 'datejs',
 	     'bootstrap', 'bootstrap.select'], 
 	     function($, RemoteDataSource, SelectSelector, tmpl) {
@@ -242,7 +243,7 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
                 }
             },
             error: function(data, textStatus, jqXHR) {
-                alert('<%=t.front_end_reservation.conditions_not_read%>');
+                alert('Error registrando reserva');
             },
             beforeSend: function(jqXHR) {
                 $('#full_loader').show();

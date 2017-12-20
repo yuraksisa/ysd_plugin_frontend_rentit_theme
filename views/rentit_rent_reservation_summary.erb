@@ -33,7 +33,7 @@
             <div class="col-md-12">
               <div class="car-details">
                 <div class="block-title">
-                  <h2 style="text-align:center"><%=booking_item.item_description%></h2>
+                  <h2 style="text-align:center"><%=booking_item.item_description_customer_translation%></h2>
                 </div>
                 <div class="price" style="text-align:right">
                   <%if booking_item.quantity > 1%>
@@ -60,7 +60,7 @@
             <div class="col-md-12">
                <div class="car-details">
                   <div class="block-title">
-                     <h2 style="text-align:center"><%=booking_extra.extra_description%></h2>
+                     <h2 style="text-align:center"><%=booking_extra.extra_description_customer_translation%></h2>
                   </div>
                   <div class="price" style="text-align:right">
                     <%if booking_extra.quantity > 1%>
@@ -126,20 +126,20 @@
               <h5 class="widget-title-sub"><%=t.front_end_reservation.reservation_summary_pickup%></h5>
               <div class="media">
                 <span class="media-object pull-left"><i class="fa fa-calendar"></i></span>
-                <div class="media-body"><p><%=l(@booking.date_from,'%d %B %Y')%> / <%=@booking.time_from%></p></div>
+                <div class="media-body"><p><%=SystemConfiguration::Settings.instance.format_date(@booking.date_from, :full, session[:locale])%> / <%=@booking.time_from%></p></div>
               </div>
               <div class="media">
                 <span class="media-object pull-left"><i class="fa fa-location-arrow"></i></span>
-                <div class="media-body"><p><%=@booking.pickup_place%></p></div>
+                <div class="media-body"><p><%=@booking.pickup_place_customer_translation%></p></div>
               </div>
               <h5 class="widget-title-sub"><%=t.front_end_reservation.reservation_summary_return%></h5>
               <div class="media">
                 <span class="media-object pull-left"><i class="fa fa-calendar"></i></span>
-                <div class="media-body"><p><%=l(@booking.date_to,'%d %B %Y')%> / <%=@booking.time_to%></p></div>
+                <div class="media-body"><p><%=SystemConfiguration::Settings.instance.format_date(@booking.date_to, :full, session[:locale])%> / <%=@booking.time_to%></p></div>
               </div>
               <div class="media">
                 <span class="media-object pull-left"><i class="fa fa-location-arrow"></i></span>
-                <div class="media-body"><p><%=@booking.return_place%></p></div>
+                <div class="media-body"><p><%=@booking.return_place_customer_translation%></p></div>
               </div>
               <h5 class="widget-title-sub"><%=t.front_end_reservation.reservation_summary_price%></h5>
               <div class="list">

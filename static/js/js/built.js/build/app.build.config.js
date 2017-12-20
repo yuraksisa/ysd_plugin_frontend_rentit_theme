@@ -1,16 +1,13 @@
-/* --------------------------
-   Defines the modules
-   --------------------------
-*/
-var require = {
-
-	baseUrl: '/js/build',
-
+requirejs.config({
+		
     paths: {
         "jquery"                  : "jquery", 
         "jquery.migrate"          : "jquery.migrate",
         "jquery.ui"               : "jquery.ui", 
         "jquery.ui.datepicker-es" : "jquery.ui.datepicker-es",
+        "jquery.ui.datepicker-en" : "jquery.ui.datepicker-en",
+        "jquery.ui.datepicker-ca" : "jquery.ui.datepicker-ca",
+        "jquery.ui.datepicker-it" : "jquery.ui.datepicker-it",
         "jquery.ui.datepicker.validation" : "jquery.ui.datepicker.validation",        
         "jquery.validate"         : "jquery.validate",
         "jquery.form"             : "jquery.form",
@@ -53,7 +50,5 @@ var require = {
         },      
         "ysdtemplate": {}
     }
-
-};
-
-
+	
+});

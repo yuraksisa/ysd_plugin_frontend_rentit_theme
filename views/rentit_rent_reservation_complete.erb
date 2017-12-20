@@ -4,7 +4,6 @@
                 <div class="row">
                     <!-- CONTENT -->
                     <div class="col-md-8 content" id="content" style="display: none">
-
                         <!-- Product -->
                         <div id="selected_product">
                         </div>
@@ -245,23 +244,23 @@
      <h5 class="widget-title-sub"><%=t.front_end_reservation.reservation_summary_pickup%></h5>
      <div class="media">
         <span class="media-object pull-left"><i class="fa fa-calendar"></i></span>
-        <div class="media-body"><p><%%=new Date(shopping_cart.date_from).toString('d MMMM yyyy')%><% if booking_item_family and booking_item_family.time_to_from %> / <%%=shopping_cart.time_from%><%end%></p></div>
+        <div class="media-body"><p><%%=shopping_cart.date_from_full_format%><% if booking_item_family and booking_item_family.time_to_from %> / <%%=shopping_cart.time_from%><%end%></p></div>
      </div>
      <% if booking_item_family and booking_item_family.pickup_return_place %>
      <div class="media">
         <span class="media-object pull-left"><i class="fa fa-location-arrow"></i></span>
-        <div class="media-body"><p><%%=shopping_cart.pickup_place%></p></div>
+        <div class="media-body"><p><%%=shopping_cart.pickup_place_customer_translation%></p></div>
      </div>
      <% end %>
      <h5 class="widget-title-sub"><%=t.front_end_reservation.reservation_summary_return%></h5>
      <div class="media">
        <span class="media-object pull-left"><i class="fa fa-calendar"></i></span>
-       <div class="media-body"><p><%%=new Date(shopping_cart.date_to).toString('d MMMM yyyy')%><% if booking_item_family and booking_item_family.time_to_from %> / <%%=shopping_cart.time_to%><%end%></p></div>
+       <div class="media-body"><p><%%=shopping_cart.date_to_full_format%><% if booking_item_family and booking_item_family.time_to_from %> / <%%=shopping_cart.time_to%><%end%></p></div>
      </div>
      <% if booking_item_family and booking_item_family.pickup_return_place %>
      <div class="media">
        <span class="media-object pull-left"><i class="fa fa-location-arrow"></i></span>
-       <div class="media-body"><p><%%=shopping_cart.return_place%></p></div>
+       <div class="media-body"><p><%%=shopping_cart.return_place_customer_translation%></p></div>
      </div>
      <% end %>
      <h5 class="widget-title-sub"><%=t.front_end_reservation.reservation_summary_price%></h5>
@@ -315,12 +314,12 @@
      <% if booking_item_family.driver and booking_driver_min_age_rules %>
      <div>
        <hr>
-       <span><strong><%%=shopping_cart.driver_age_rule_description%></strong></span>
+       <span><strong><%%=shopping_cart.driver_age_rule_description_customer_translation%></strong></span>
      </div>
      <% end %>
 
      <div class="button">
-       <a href="/reserva/producto" class="btn btn-block btn-theme btn-theme-dark"><%=t.front_end_reservation.modify_reservation%></a>
+       <a href="/reserva/producto" class="btn btn-block btn-theme btn-theme-dark"><%=t.front_end_reservation.modify_the_reservation%></a>
      </div>
   </div>
 </script>
