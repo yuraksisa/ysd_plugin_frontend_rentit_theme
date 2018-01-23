@@ -138,12 +138,56 @@
 
   <!-- FOOTER -->
   <footer class="footer">
+
     <div class="footer-meta">
       <div class="container">
         <div class="row">
-
+          <div class="col-sm-offset-4 col-sm-4">
+            <ul class="media-list contact-list">
+              <li class="media">
+                <div class="media-body"><strong>{{site_company_name}}</strong></div>
+              </li>
+              <li class="media">
+                <div class="media-body">{{site_company_document_id}}</div>
+              </li>
+              <li class="media">
+                <div class="media-left"><i class="fa fa-home"></i></div>
+                <div class="media-body"><%=t.frontend_web.company.address%>: {{site_company_address_1}}</div>
+              </li>
+              {% if site_company_address_2 and site_company_address_2 != '.' and !site_company_address_2.empty? %}
+              <li class="media">
+                <div class="media-left"><i class="fa fa"></i></div>
+                <div class="media-body">{{site_company_address_2}}</div>
+              </li>
+              {% endif %}
+              <li class="media">
+                <div class="media-left"><i class="fa fa-phone"></i></div>
+                <div class="media-body"><%=t.frontend_web.company.phone_number%>: {{site_company_phone_number}}</div>
+              </li>
+              <li class="media">
+                <div class="media-left"><i class="fa fa-envelope"></i></div>
+                <div class="media-body"><%=t.frontend_web.company.email%>: {{site_company_email}}</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-sm-12">
-            <div class="copyright">&copy; 2017 mybooking</div>
+            <p class="btn-row text-center">
+              {% if site_company_facebook and site_company_facebook != '.' %}
+              <a href="{{site_company_facebook}}" class="btn btn-theme btn-icon-left facebook"><i class="fa fa-facebook"></i>FACEBOOK</a>
+              {% endif %}
+              {% if site_company_twitter and site_company_twitter != '.' %}
+              <a href="{{site_company_twitter}}" class="btn btn-theme btn-icon-left twitter"><i class="fa fa-twitter"></i>TWITTER</a>
+              {% endif %}
+              {% if site_company_instagram and site_company_instagram != '.' %}
+              <a href="{{site_company_instagram}}" class="btn btn-theme btn-icon-left instagram"><i class="fa fa-instagram"></i>INSTAGRAM</a>
+              {% endif %}
+              {% if site_company_linkedin and site_company_linkedin != '.' %}
+              <a href="#" class="btn btn-theme btn-icon-left linkedin"><i class="fa fa-linkedin"></i>LINKEDIN</a>
+              {% endif %}
+            </p>
+            <div class="copyright">&copy; {{year}} {{site_company_name}} - <%= t.frontend_web.powered_by_mybooking %></div>
           </div>
 
         </div>

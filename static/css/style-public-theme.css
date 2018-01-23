@@ -7928,7 +7928,7 @@ input[type=checkbox] {
 /* Contact form
 /* ========================================================================== */
 .page-section.contact {
-    background: url(../img/preview/page-section-contact-2.jpg) center top no-repeat;
+    background: url(/rentit/img/preview/page-section-contact-2.jpg) center top no-repeat;
     background-size: cover;
 }
 .page-section.contact:after {
