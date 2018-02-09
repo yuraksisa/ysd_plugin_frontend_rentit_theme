@@ -29,7 +29,8 @@ requirejs(['jquery',
            'YSDListSelectorModel',          // Select an element from a list (checkboxes)
            'YSDSelectSelector',             // Select an element from a select
            'YSDEventTarget', 
-           'ysdtemplate'
+           'ysdtemplate',
+           'async'
         ],
         function() {
           // none	

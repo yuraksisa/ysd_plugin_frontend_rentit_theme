@@ -43,6 +43,8 @@ module YsdPluginFrontendRentitTheme
       # Apply the layout
       if layout_name == 'page_render' and SystemConfiguration::Variable.get_value('frontend.skin', nil) == 'rentit'
         # theme attributes
+        #primary_links_menu = Site::Menu.first(name: 'primary_links').translate(context[:app].session[:locale])
+        #secondary_links_menu = Site::Menu.first(name: 'secondary_links').translate(context[:app].session[:locale])
         theme_attributes = {'css_header_background' => SystemConfiguration::Variable.get_value('frontend.skin.rentit.css.header_background','#fbfbfb'), 
                             'site_company_name' => SystemConfiguration::Variable.get_value('site.company.name', '.'),
                             'site_company_document_id' => SystemConfiguration::Variable.get_value('site.company.document_id', '.'),
@@ -58,9 +60,13 @@ module YsdPluginFrontendRentitTheme
                             'site_company_twitter' => SystemConfiguration::Variable.get_value('site.company.twitter', '.'),
                             'site_company_linkedin' => SystemConfiguration::Variable.get_value('site.company.linkedin', '.'),
                             'site_company_instagram' => SystemConfiguration::Variable.get_value('site.company.instagram', '.'),
-                            'year' => Date.today.year
+                            'year' => Date.today.year#,
+                           # 'primary_links_menu' => primary_links_menu,
+                           # 'secondary_links_menu' => secondary_links_menu
                            }
-        
+
+       # p "primary_links_menu: #{primary_links_menu.menu_items.inspect}"
+
         # template
         template_file = File.open (File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', 'views','rentit_page_render.erb')))
         template = template_file.read

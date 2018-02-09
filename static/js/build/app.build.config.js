@@ -22,7 +22,8 @@ requirejs.config({
         "swiper.jquery"           : "swiper.jquery",
         "json2"                   : "json2",
         "datejs"                  : "datejs",
-        "ysdtemplate"             : "ysdtemplate"
+        "ysdtemplate"             : "ysdtemplate",
+        "async"                   : "async"
     },
 
     shim: {
@@ -48,7 +49,8 @@ requirejs.config({
         "modernizr" : {
           "exports": 'Modernizr'
         },      
-        "ysdtemplate": {}
+        "ysdtemplate": {},
+        "async": {}
     }
 	
 });
