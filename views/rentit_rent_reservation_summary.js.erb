@@ -1,13 +1,38 @@
-require(['jquery'],
+require(['jquery','jquery.form'],
     function($) {
 
   model = { // THE MODEL
+      bookingId: '<%= @booking.free_access_id%>',
+      pay: function(payment, paymentMethodId) {
+          // Submit the form to start the payment
+          alert('payment:'+payment+' - method: '+paymentMethodId);
+          $.form('/reserva/pagar',{ id: model.bookingId,
+                                    payment: payment,
+                                    payment_method_id: paymentMethodId}, 'POST').submit();
+      }
   };
 
   controller = { // THE CONTROLLER
+
+     btnPayClick: function() {
+         var payment = 'deposit';
+         var paymentMethodId = $('#accordion a').not('.collapsed').attr('data-payment-method');
+         model.pay(payment, paymentMethodId);
+     }
+
   };
 
   view = { // THE VIEW
+      init: function() {
+        this.setupEvents();
+      },
+      setupEvents: function() {
+         $('#btn_pay').bind('click', function(){
+            controller.btnPayClick();
+         });
+      }
   };
+
+  view.init();
 
 });

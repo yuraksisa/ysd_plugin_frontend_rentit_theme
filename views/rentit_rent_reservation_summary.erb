@@ -4,9 +4,7 @@
 
     <div class="row">
       <div class="col-md-12">
-
         <h2 class="text-center"><%=@booking.customer_name%> <%=@booking.customer_surname%>, <strong><%=t.front_end_reservation.booking_detail_title("#{t[:front_end_reservation][:booking_detail_state][@booking.status.to_sym]}").to_s.downcase%></strong></h2>
-
       </div>
     </div>
 
@@ -111,6 +109,53 @@
         </div>
 
         <!--/CUSTOMER INFORMATION -->
+
+        <!-- PAYMENT -->
+        <% if @booking.can_pay? and @booking.can_pay_deposit? and (@payment_methods.tpv_virtual or @payment_methods.paypal)%>
+          <h3 class="block-title alt"><i class="fa fa-angle-down"></i><%=t.front_end_reservation.payment_title%></h3>
+          <% if @booking.can_pay_deposit? %>
+          <div class="alert alert-success">
+            <p><%=t.front_end_reservation.payment_to_confirm_reservation(@deposit, "(%.2f #{@currency})" % @booking.booking_amount)%></p>
+          </div>
+          <% end %>
+          <div class="panel-group payments-options" id="accordion" role="tablist" aria-multiselectable="true">
+            <% if @payment_methods.tpv_virtual %>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingThree">
+                <h4 class="panel-title">
+                  <a class="collapsed" data-payment-method="<%=@payment_methods.tpv_virtual.id%>" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapseThree">
+                    <span class="dot"></span> <%=t.front_end_reservation.credit_card_payment%>
+                  </a>
+                  <span class="overflowed pull-right">
+                  </span>
+                </h4>
+              </div>
+              <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3"></div>
+            </div>
+            <% end %>
+            <% if @payment_methods.paypal %>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="heading4">
+                <h4 class="panel-title">
+                  <a class="collapsed" data-payment-method="paypal_standard" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                    <span class="dot"></span> <%=t.front_end_reservation.paypal_payment%>
+                  </a>
+                  <span class="overflowed pull-right">
+                  </span>
+                </h4>
+              </div>
+              <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4"></div>
+            </div>
+            <% end %>
+
+            <div class="overflowed reservation-now">
+              <div>
+                <a id="btn_pay" class="btn btn-theme pull-right btn-reservation-now" href="#"><%=t.front_end_reservation.booking_detail_pay_button%></a>
+              </div>
+            </div>
+          </div>
+          <% end %>
+          <!-- //PAYMENT -->
 
       </div>
       <!-- /CONTENT -->

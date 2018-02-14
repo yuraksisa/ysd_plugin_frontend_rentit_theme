@@ -91,6 +91,9 @@
 
 .form-search {
     background: rgba(20, 24, 28, 0.8);
+}
+
+.form-search.dark {
     min-height: 250px;
     margin: 100px 0px;
 }

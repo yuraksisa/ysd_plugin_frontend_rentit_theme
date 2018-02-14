@@ -470,9 +470,9 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
 
     },
 
-    updatePayment: function() { // Update the payment 
+    updatePayment: function() { // Update the payment
       var paymentInfo = tmpl('script_payment_detail')(
-                    {sales_process: model.sales_process});
+            {sales_process: model.sales_process});
       $('#payment_detail').html(paymentInfo);
     }
 

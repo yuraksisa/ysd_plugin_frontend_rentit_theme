@@ -327,9 +327,11 @@
 <!-- Script payment -->
 <script type="text/tmpl" id="script_payment_detail">
   <h3 class="block-title alt"><i class="fa fa-angle-down"></i><%=t.front_end_reservation.payment_title%></h3>
+  <%% if (sales_process.can_pay) { %>
   <div class="alert alert-success">
-    <p><%=t.front_end_reservation.payment_to_confirm_reservation(20)%></p>
+    <p><%=t.front_end_reservation.payment_to_confirm_reservation(@deposit)%></p>
   </div>
+  <%% } %>
   <div class="panel-group payments-options" id="accordion" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
       <div class="panel-heading" role="tab" id="headingThree">
@@ -342,11 +344,12 @@
       <div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2"></div>
     </div>
     <%% if (sales_process.can_pay) { %>
+    <% if @payment_methods.tpv_virtual %>
     <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingThree">
               <h4 class="panel-title">
                   <a class="collapsed" data-payment-method="redsys256" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapseThree">
-                      <span class="dot"></span> <%=t.front_end_reservation.credit_card_payment(20)%>
+                      <span class="dot"></span> <%=t.front_end_reservation.credit_card_payment%>
                   </a>
           <span class="overflowed pull-right">
               <!--img src="assets/img/preview/payments/mastercard-2.jpg" alt=""/>
@@ -359,11 +362,13 @@
           </div>
           <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3"></div>
     </div>
+    <% end %>
+    <% if @payment_methods.paypal %>
     <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="heading4">
               <h4 class="panel-title">
                   <a class="collapsed" data-payment-method="paypal_standard" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                      <span class="dot"></span> <%=t.front_end_reservation.paypal_payment(20)%>
+                      <span class="dot"></span> <%=t.front_end_reservation.paypal_payment%>
                   </a>
                   <span class="overflowed pull-right">
                      <!--img src="assets/img/preview/payments/paypal-2.jpg" alt=""/-->
@@ -372,6 +377,7 @@
           </div>
           <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4"></div>
     </div>
+    <% end %>
     <%% } %>
   </div>
 </script> 

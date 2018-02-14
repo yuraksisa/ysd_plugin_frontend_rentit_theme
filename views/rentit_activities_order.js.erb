@@ -1,0 +1,49 @@
+require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
+        'ysdtemplate',
+        'jquery.validate', 'jquery.ui', 'jquery.ui.datepicker-es',
+        'jquery.ui.datepicker.validation','jquery.form', 'datejs',
+        'bootstrap', 'bootstrap.select'],
+    function($, RemoteDataSource, SelectSelector, tmpl) {
+
+        model = { // THE MODEL
+            requestLanguage: <% if locale=locale_to_translate_into %>'<%=locale%>'<%else%>null<%end%>,
+            orderId: '<%= @order.free_access_id%>',
+            pay: function(payment, paymentMethodId) {
+                // Submit the form to start the payment
+                alert('payment:'+payment+' - method: '+paymentMethodId);
+                $.form('/reserva-actividades/pagar',{ id: model.orderId,
+                                                      payment: payment,
+                                                      payment_method_id: paymentMethodId}, 'POST').submit();
+            }
+        };
+
+        controller = { // THE CONTROLLER
+            btnPayClick: function() {
+                <% if @order.can_pay_deposit? %>
+                var payment = 'deposit';
+                <% elsif @order.can_pay_pending? %>
+                var payment = 'pending';
+                <% elsif @order.can_pay_total? %>
+                var payment = 'total';
+                <% end %>
+                var paymentMethodId = $('#accordion a').not('.collapsed').attr('data-payment-method');
+                model.pay(payment, paymentMethodId);
+            }
+        };
+
+        view = { // THE VIEW
+
+            init: function() {
+                this.setupEvents();
+            },
+            setupEvents: function() {
+                $('#btn_pay').bind('click', function(){
+                    controller.btnPayClick();
+                });
+            }
+
+        };
+
+        view.init();
+
+    });
