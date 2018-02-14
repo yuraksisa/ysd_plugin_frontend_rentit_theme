@@ -10,7 +10,6 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
             orderId: '<%= @order.free_access_id%>',
             pay: function(payment, paymentMethodId) {
                 // Submit the form to start the payment
-                alert('payment:'+payment+' - method: '+paymentMethodId);
                 $.form('/reserva-actividades/pagar',{ id: model.orderId,
                                                       payment: payment,
                                                       payment_method_id: paymentMethodId}, 'POST').submit();
