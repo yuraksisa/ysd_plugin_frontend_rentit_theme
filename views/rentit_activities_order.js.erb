@@ -18,15 +18,20 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
 
         controller = { // THE CONTROLLER
             btnPayClick: function() {
-                <% if @order.can_pay_deposit? %>
-                var payment = 'deposit';
-                <% elsif @order.can_pay_pending? %>
-                var payment = 'pending';
-                <% elsif @order.can_pay_total? %>
-                var payment = 'total';
-                <% end %>
-                var paymentMethodId = $('#accordion a').not('.collapsed').attr('data-payment-method');
-                model.pay(payment, paymentMethodId);
+                if ((typeof $('#accordion a').not('.collapsed').attr('data-payment-method')) === 'undefined') {
+                    alert('Debe indicar forma de pago');
+                }
+                else {
+                  <% if @order.can_pay_deposit? %>
+                  var payment = 'deposit';
+                  <% elsif @order.can_pay_pending? %>
+                  var payment = 'pending';
+                  <% elsif @order.can_pay_total? %>
+                  var payment = 'total';
+                  <% end %>
+                  var paymentMethodId = $('#accordion a').not('.collapsed').attr('data-payment-method');
+                  model.pay(payment, paymentMethodId);
+                }
             }
         };
 
