@@ -1,5 +1,5 @@
 require(['jquery','ysdtemplate',
-        'jquery.ui', 'jquery.ui.datepicker-es', 'jquery.ui.datepicker.validation', 'jquery.validate',
+        'jquery.ui', 'jquery.ui.datepicker-es', 'jquery.ui.datepicker.validation', 'jquery.validate','jquery.form',
         'bootstrap', 'bootstrap.select'],
     function($,  tmpl) {
 
@@ -77,7 +77,7 @@ require(['jquery','ysdtemplate',
 
           submitReservationForm: function() {
               if ($('#accept').is(':checked')) {
-                  if ($('#accordion a').not('.collapsed').attr('data-payment-method') === 'undefined') {
+                  if ((typeof $('#accordion a').not('.collapsed').attr('data-payment-method')) === 'undefined') {
                       alert('Debe indicar forma de pago');
                   }
                   else {
