@@ -101,7 +101,7 @@
           <h3 class="block-title alt"><i class="fa fa-angle-down"></i><%=t.front_end_activities.order_page.payment_group.title%></h3>
           <% if @order.can_pay_deposit? %>
             <div class="alert alert-success">
-              <p><%=t.front_end_activities.order_page.payment_group.deposit_title(@deposit, "(%.2f #{@currency})" % @order.booking_amount)%></p>
+              <p><%=t.front_end_activities.order_page.payment_group.deposit_title(@deposit, "(%.2f #{@currency})" % @order.reservation_amount)%></p>
             </div>
           <% elsif @order.can_pay_pending? %>
             <div class="alert alert-success">
