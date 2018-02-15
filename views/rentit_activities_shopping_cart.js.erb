@@ -22,10 +22,10 @@ require(['jquery','ysdtemplate',
                       model.shoppingCart = data.shopping_cart;
                       model.shoppingCartProducts = data.products;
                       // setup the payment option (deposit or total)
-                      if (model.shoppingCart.canPayDeposit) {
+                      if (model.shoppingCart.can_pay_deposit) {
                           model.payment = 'deposit';
                       }
-                      else if (model.shoppingCart.canPayTotal) {
+                      else if (model.shoppingCart.can_pay_total) {
                           model.payment = 'total';
                       }
                       view.updateShoppingCart();
