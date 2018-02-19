@@ -107,8 +107,211 @@
             </div>
           </div>
         </div>
-
         <!--/CUSTOMER INFORMATION -->
+
+        <!-- EXTRA DATA -->
+        <% if @booking_item_family.driver or @booking_item_family.named_resources or @booking_item_family.height or
+              @booking_item_family.weight %>
+          <div class="alert alert-warning">
+            <p>Por favor, complete los datos para agilizar la realización de la actividad en la fecha prevista</p>
+          </div>
+          <form name="booking_information_form" id="booking_information_form" name="order_form" class="form-delivery" method="post">
+            <% if @booking_item_family.driver %>
+              <h3 class="block-title alt"> <i class="fa fa-angle-down"></i>Dirección del cliente</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input name="customer_address[street]" id="street" title="Calle" data-toggle="tooltip"
+                           class="form-control alt" type="text" placeholder="Calle:" maxlength="60"
+                           value="<%=@booking.driver_address ? @booking.driver_address.street : ''%>">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input name="customer_address[number]" id="number" title="Número" data-toggle="tooltip"
+                           class="form-control alt" type="text" placeholder="Número:"  maxlength="10"
+                           value="<%=@booking.driver_address ? @booking.driver_address.number : ''%>">
+                  </div>
+                </div>
+                <div class="col-md-6 clearfix">
+                  <div class="form-group">
+                    <input name="customer_address[complement]" id="complement" title="Complemento (piso y puerta)" data-toggle="tooltip"
+                           class="form-control alt" type="text" placeholder="Complemento (piso/puerta):"  maxlength="20"
+                           value="<%=@booking.driver_address ? @booking.driver_address.complement : ''%>">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input name="customer_address[city]" id="city" title="Ciudad" data-toggle="tooltip"
+                           class="form-control alt" type="text" placeholder="Ciudad:"  maxlength="60"
+                           value="<%=@booking.driver_address ? @booking.driver_address.city : ''%>">
+                  </div>
+                </div>
+                <div class="col-md-6 clearfix">
+                  <div class="form-group">
+                    <input name="customer_address[state]" id="state" class="form-control alt" type="text"
+                           placeholder="Provincia:" maxlength="60"
+                           value="<%=@booking.driver_address ? @booking.driver_address.state : ''%>">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <input name="customer_address[country]" id="country" class="form-control alt" type="text"
+                           placeholder="País:"  maxlength="50"
+                           value="<%=@booking.driver_address ? @booking.driver_address.country : ''%>">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <input name="customer_address[zip]" id="zip" class="form-control alt" type="text"
+                           placeholder="Código postal:"  maxlength="10"
+                           value="<%=@booking.driver_address ? @booking.driver_address.zip : ''%>">
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <% if @booking_item_family.named_resources or @booking_item_family.height or @booking_item_family.weight %>
+              <br>
+              <h3 class="block-title alt"> <i class="fa fa-angle-down"></i>Datos de los participantes en las actividades</h3>
+              <% @booking.booking_lines.each do |booking_line| %>
+                  <h4 class="widget-title-sub"><%=booking_line.quantity%> <%=booking_line.item_description%></h4>
+                  <% booking_line.booking_line_resources.each do |booking_line_resource| %>
+                    <h5 class="widget-title">Participante</h5>
+                    <div class="row">
+                      <input type="hidden" name="booking_line_resources[<%=booking_line_resource.id%>][id]" value="<%=booking_line_resource.id%>"/>
+                      <% if @booking_item_family.named_resources %>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <input name="booking_line_resources[<%=booking_line_resource.id%>][resource_user_name]"  title="Nombre" data-toggle="tooltip"
+                                   class="form-control alt" type="text" placeholder="Nombre:" maxlength="80"
+                                   value="<%=booking_line_resource.resource_user_name%>">
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <input name="booking_line_resources[<%=booking_line_resource.id%>][resource_user_surname]" title="Apellidos" data-toggle="tooltip"
+                                   class="form-control alt" type="text" placeholder="Apellidos:"  maxlength="80"
+                                   value="<%=booking_line_resource.resource_user_surname%>">
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <input name="booking_line_resources[<%=booking_line_resource.id%>][resource_user_document_id]" title="NIF/Pasaporte" data-toggle="tooltip"
+                                   class="form-control alt" type="text" placeholder="NIF/Pasaporte:"  maxlength="50"
+                                   value="<%=booking_line_resource.resource_user_document_id%>">
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <input name="booking_line_resources[<%=booking_line_resource.id%>][resource_user_phone]" title="Teléfono" data-toggle="tooltip"
+                                   class="form-control alt" type="text" placeholder="Teléfono:"  maxlength="15"
+                                   value="<%=booking_line_resource.resource_user_phone%>">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <input name="booking_line_resources[<%=booking_line_resource.id%>][resource_user_email]" title="Correo electrónico" data-toggle="tooltip"
+                                   class="form-control alt" type="text" placeholder="Corro electrónico:"  maxlength="40"
+                                   value="<%=booking_line_resource.resource_user_email%>">
+                          </div>
+                        </div>
+                      <% end %>
+                      <% if @booking_item_family.height %>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <input name="booking_line_resources[<%=booking_line_resource.id%>][customer_height]" title="Altura (en cm)" data-toggle="tooltip"
+                                   class="form-control alt" type="text" placeholder="Altura: (en cm)"  maxlength="40"
+                                   value="<%=booking_line_resource.customer_height%>">
+                          </div>
+                        </div>
+                      <% end %>
+                      <% if @booking_item_family.weight %>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <input name="booking_line_resources[<%=booking_line_resource.id%>][customer_weight]" title="Peso (en kg)" data-toggle="tooltip"
+                                   class="form-control alt" type="text" placeholder="Peso: (en kg)"  maxlength="40"
+                                   value="<%=booking_line_resource.customer_weight%>">
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                    <% if booking_line_resource.pax == 2 %>
+                    <br>
+                    <h5 class="widget-title">Participante</h5>
+                    <div class="row">
+                      <% if @booking_item_family.named_resources %>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <input name="booking_line_resources[<%=booking_line_resource.id%>][resource_user_2_name]"  title="Nombre" data-toggle="tooltip"
+                                   class="form-control alt" type="text" placeholder="Nombre:" maxlength="80"
+                                   value="<%=booking_line_resource.resource_user_2_name%>">
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <input name="booking_line_resources[<%=booking_line_resource.id%>][resource_user_2_surname]" title="Apellidos" data-toggle="tooltip"
+                                   class="form-control alt" type="text" placeholder="Apellidos:"  maxlength="80"
+                                   value="<%=booking_line_resource.resource_user_2_surname%>">
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <input name="booking_line_resources[<%=booking_line_resource.id%>][resource_user_2_document_id]" title="NIF/Pasaporte" data-toggle="tooltip"
+                                   class="form-control alt" type="text" placeholder="NIF/Pasaporte:"  maxlength="50"
+                                   value="<%=booking_line_resource.resource_user_2_document_id%>">
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <input name="booking_line_resources[<%=booking_line_resource.id%>][resource_user_2_phone]" title="Teléfono" data-toggle="tooltip"
+                                   class="form-control alt" type="text" placeholder="Teléfono:"  maxlength="15"
+                                   value="<%=booking_line_resource.resource_user_2_phone%>">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <input name="booking_line_resources[<%=booking_line_resource.id%>][resource_user_2_email]" title="Correo electrónico" data-toggle="tooltip"
+                                   class="form-control alt" type="text" placeholder="Corro electrónico:"  maxlength="40"
+                                   value="<%=booking_line_resource.resource_user_2_email%>">
+                          </div>
+                        </div>
+                      <% end %>
+                      <% if @booking_item_family.height %>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <input name="booking_line_resources[<%=booking_line_resource.id%>][customer_2_height]" title="Altura (en cm)" data-toggle="tooltip"
+                                   class="form-control alt" type="text" placeholder="Altura: (en cm)"  maxlength="40"
+                                   value="<%=booking_line_resource.customer_2_height%>">
+                          </div>
+                        </div>
+                      <% end %>
+                      <% if @booking_item_family.weight %>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <input name="booking_line_resources[<%=booking_line_resource.id%>][customer_2_weight]" title="Peso (en kg)" data-toggle="tooltip"
+                                   class="form-control alt" type="text" placeholder="Peso: (en kg)"  maxlength="40"
+                                   value="<%=booking_line_resource.customer_2_weight%>">
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                    <% end %>
+                    <br>
+                  <% end %>
+
+              <% end %>
+            <% end %>
+            <div class="row">
+              <div class="overflowed reservation-now">
+                <div>
+                  <a id="btn_update_reservation" class="btn btn-theme pull-right btn-reservation-now" href="#">Actualizar datos</a>
+                </div>
+              </div>
+            </div>
+          </form>
+        <% end %>
+        <!-- EXTRA DATA -->
+
 
         <!-- PAYMENT -->
         <% if @booking.can_pay? and @booking.can_pay_deposit? and (@payment_methods.tpv_virtual or @payment_methods.paypal)%>

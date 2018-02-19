@@ -13,6 +13,36 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
                 $.form('/reserva-actividades/pagar',{ id: model.orderId,
                                                       payment: payment,
                                                       payment_method_id: paymentMethodId}, 'POST').submit();
+            },
+            update: function() {
+
+                var order = $('form[name=order_information_form]').formParams(false);
+                var order_item_customers = order['order_item_customers'];
+                delete order['order_item_customers'];
+                order['order_item_customers'] = [];
+                for (item in order_item_customers) {
+                    order['order_item_customers'].push(order_item_customers[item]);
+                }
+
+                var orderJSON = encodeURIComponent(JSON.stringify(order));
+
+                var url = '/api/booking-activities/frontend/order/' + this.orderId;
+
+                $.ajax({
+                    type: 'PUT',
+                    url : url,
+                    data: orderJSON,
+                    dataType : 'json',
+                    contentType : 'application/json; charset=utf-8',
+                    crossDomain: true,
+                    success: function(data, textStatus, jqXHR) {
+                        view.update('order_updated')
+                    },
+                    error: function(data, textStatus, jqXHR) {
+                        alert('Error actualizando pedido');
+                    }
+                });
+
             }
         };
 
@@ -32,6 +62,9 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
                   var paymentMethodId = $('#accordion a').not('.collapsed').attr('data-payment-method');
                   model.pay(payment, paymentMethodId);
                 }
+            },
+            btnUpdateClick: function() {
+                model.update();
             }
         };
 
@@ -44,6 +77,24 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
                 $('#btn_pay').bind('click', function(){
                     controller.btnPayClick();
                 });
+                $('#btn_update_order').bind('click', function(){
+                    controller.btnUpdateClick();
+                });
+            },
+            update: function(action) {
+                switch (action) {
+                    case 'order_updated':
+                        $.toast({
+                            heading: 'Actualización de datos',
+                            text: 'Los datos se han actualizado correctamente',
+                            position: 'top-right',
+                            bgColor: 'rgb(56, 154, 56)',
+                            textColor: 'white',
+                            loader: false,
+                            stack: false
+                        });
+                        break;
+                }
             }
 
         };

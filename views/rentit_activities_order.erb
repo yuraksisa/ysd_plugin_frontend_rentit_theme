@@ -96,6 +96,173 @@
         </div>
         <!--/CUSTOMER INFORMATION -->
 
+        <!-- EXTRA DATA -->
+        <% if @order.request_customer_address? or @order.request_customer_information?%>
+        <div class="alert alert-warning">
+           <p>Por favor, complete los datos para agilizar la realización de la actividad en la fecha prevista</p>
+        </div>
+        <form id="order_information_form" name="order_information_form" class="form-delivery" method="post">
+          <% if @order.request_customer_address? %>
+          <h3 class="block-title alt"> <i class="fa fa-angle-down"></i>Dirección del cliente</h3>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input name="customer_address[street]" id="street" title="Calle" data-toggle="tooltip"
+                       class="form-control alt" type="text" placeholder="Calle:" maxlength="60"
+                       value="<%=@order.customer_address ? @order.customer_address.street : ''%>">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input name="customer_address[number]" id="number" title="Número" data-toggle="tooltip"
+                       class="form-control alt" type="text" placeholder="Número:"  maxlength="10"
+                       value="<%=@order.customer_address ? @order.customer_address.number : ''%>">
+              </div>
+            </div>
+            <div class="col-md-6 clearfix">
+              <div class="form-group">
+                <input name="customer_address[complement]" id="complement" title="Complemento (piso y puerta)" data-toggle="tooltip"
+                       class="form-control alt" type="text" placeholder="Complemento (piso/puerta):"  maxlength="20"
+                       value="<%=@order.customer_address ? @order.customer_address.complement : ''%>">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input name="customer_address[city]" id="city" title="Ciudad" data-toggle="tooltip"
+                       class="form-control alt" type="text" placeholder="Ciudad:"  maxlength="60"
+                       value="<%=@order.customer_address ? @order.customer_address.city : ''%>">
+              </div>
+            </div>
+            <div class="col-md-6 clearfix">
+              <div class="form-group">
+                <input name="customer_address[state]" id="state" class="form-control alt" type="text"
+                       placeholder="Provincia:" maxlength="60"
+                       value="<%=@order.customer_address ? @order.customer_address.state : ''%>">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <input name="customer_address[country]" id="country" class="form-control alt" type="text"
+                       placeholder="País:"  maxlength="50"
+                       value="<%=@order.customer_address ? @order.customer_address.country : ''%>">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <input name="customer_address[zip]" id="zip" class="form-control alt" type="text"
+                       placeholder="Código postal:"  maxlength="10"
+                       value="<%=@order.customer_address ? @order.customer_address.zip : ''%>">
+              </div>
+            </div>
+          </div>
+          <% end %>
+          <% if @order.request_customer_information? %>
+          <br>
+          <h3 class="block-title alt"> <i class="fa fa-angle-down"></i>Datos de los participantes en las actividades</h3>
+            <% item_id = item_description = date = time = nil %>
+            <% position = 0 %>
+            <% @order.order_items.each do |order_item| %>
+               <% if order_item.item_id != item_id || order_item.date != date || order_item.time != time %>
+                  <% position = 0 %>
+                  <% date = order_item.date %>
+                  <% time = order_item.time %>
+                  <% item_id = order_item.item_id %>
+                  <% item_description = order_item.item_description %>
+                  <% if order_item.request_customer_information? %>
+                  <h4 class="widget-title-sub"><%=item_description%>. <%=l(date, '%d %B %Y')%> <%=time%></h4>
+                  <% end %>
+               <% end %>
+               <% if order_item.request_customer_information? %>
+                  <% order_item.order_item_customers.each do |order_item_customer| %>
+                    <% position += 1 %>
+                    <h5 class="widget-title">Cliente <%=position%> - <%=order_item.item_price_description%></h5>
+                    <div class="row">
+                      <input type="hidden" name="order_item_customers[<%=position%>][id]" value="<%=order_item_customer.id%>"/>
+                      <div class="col-md-3">
+                         <div class="form-group">
+                           <input name="order_item_customers[<%=position%>][customer_name]"  title="Nombre" data-toggle="tooltip"
+                                 class="form-control alt" type="text" placeholder="Nombre:" maxlength="80"
+                                 value="<%=order_item_customer.customer_name%>">
+                         </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                        <input name="order_item_customers[<%=position%>][customer_surname]" title="Apellidos" data-toggle="tooltip"
+                               class="form-control alt" type="text" placeholder="Apellidos:"  maxlength="80"
+                               value="<%=order_item_customer.customer_surname%>">
+                        </div>
+                      </div>
+                      <% if order_item.request_customer_document_id %>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <input name="order_item_customers[<%=position%>][document_id]" title="NIF/Pasaporte" data-toggle="tooltip"
+                                 class="form-control alt" type="text" placeholder="NIF/Pasaporte:"  maxlength="50"
+                                 value="<%=order_item_customer.customer_document_id%>">
+                        </div>
+                      </div>
+                      <% end %>
+                      <% if order_item.request_customer_phone %>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <input name="order_item_customers[<%=position%>][customer_phone]" title="Teléfono" data-toggle="tooltip"
+                                 class="form-control alt" type="text" placeholder="Teléfono:"  maxlength="15"
+                                 value="<%=order_item_customer.customer_phone%>">
+                        </div>
+                      </div>
+                      <% end %>
+                      <% if order_item.request_customer_email %>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <input name="order_item_customers[<%=position%>][customer_email]" title="Correo electrónico" data-toggle="tooltip"
+                                 class="form-control alt" type="text" placeholder="Corro electrónico:"  maxlength="40"
+                                 value="<%=order_item_customer.customer_email%>">
+                        </div>
+                      </div>
+                      <% end %>
+                      <% if order_item.request_customer_height %>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <input name="order_item_customers[<%=position%>][customer_height]" title="Altura (en cm)" data-toggle="tooltip"
+                                 class="form-control alt" type="text" placeholder="Altura: (en cm)"  maxlength="3"
+                                 value="<%=order_item_customer.customer_height%>">
+                        </div>
+                      </div>
+                      <% end %>
+                      <% if order_item.request_customer_weight %>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <input name="order_item_customers[<%=position%>][customer_weight]" title="Peso (en kg)" data-toggle="tooltip"
+                                 class="form-control alt" type="text" placeholder="Peso: (en kg)"  maxlength="3"
+                                 value="<%=order_item_customer.customer_weight%>">
+                        </div>
+                      </div>
+                      <% end %>
+                      <% if order_item.request_customer_allergies_intolerances %>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                           <textarea name="order_item_customers[<%=position%>][customer_allergies_or_intolerances]"
+                              class="form-control alt" placeholder="Alergias o intolerancias"
+                              cols="30" rows="10"><%=order_item_customer.customer_allergies_or_intolerances%></textarea>
+                        </div>
+                      </div>
+                      <% end %>
+                      </div>
+                      <br>
+                  <% end %>
+               <% end %>
+            <% end %>
+          <% end %>
+          <div class="row">
+            <div class="overflowed reservation-now">
+              <div>
+                <a id="btn_update_order" class="btn btn-theme pull-right btn-reservation-now" href="#">Actualizar datos</a>
+              </div>
+            </div>
+          </div>
+        </form>
+        <% end %>
+        <!-- EXTRA DATA -->
+
         <!-- PAYMENT -->
         <% if (@order.can_pay_deposit? or @order.can_pay_pending? or @order.can_pay_total?) and (@payment_methods.tpv_virtual or @payment_methods.paypal)%>
           <h3 class="block-title alt"><i class="fa fa-angle-down"></i><%=t.front_end_activities.order_page.payment_group.title%></h3>
@@ -151,174 +318,6 @@
         <% end %>
         <!-- //PAYMENT -->
 
-        <!-- EXTRA DATA -->
-        <% if @order.request_customer_address? or @order.request_customer_information?%>
-        <div class="alert alert-warning">
-           <p>Por favor, complete los datos para agilizar la realización de la actividad en la fecha prevista</p>
-        </div>
-        <form id="order_information_form" name="order_form" class="form-delivery" method="post">
-          <% if @order.request_customer_address? %>
-          <h3 class="block-title alt"> <i class="fa fa-angle-down"></i>Dirección del cliente</h3>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <input name="street" id="street" title="Calle" data-toggle="tooltip"
-                       class="form-control alt" type="text" placeholder="Calle:" maxlength="60"
-                       value="<%=@order.customer_address ? @order.customer_address.street : ''%>">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input name="number" id="number" title="Número" data-toggle="tooltip"
-                       class="form-control alt" type="text" placeholder="Número:"  maxlength="10"
-                       value="<%=@order.customer_address ? @order.customer_address.number : ''%>">
-              </div>
-            </div>
-            <div class="col-md-6 clearfix">
-              <div class="form-group">
-                <input name="complement" id="complement" title="Complemento (piso y puerta)" data-toggle="tooltip"
-                       class="form-control alt" type="text" placeholder="Complemento (piso/puerta):"  maxlength="20"
-                       value="<%=@order.customer_address ? @order.customer_address.complement : ''%>">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input name="city" id="city" title="Ciudad" data-toggle="tooltip"
-                       class="form-control alt" type="text" placeholder="Ciudad:"  maxlength="60"
-                       value="<%=@order.customer_address ? @order.customer_address.city : ''%>">
-              </div>
-            </div>
-            <div class="col-md-6 clearfix">
-              <div class="form-group">
-                <input name="state" id="state" class="form-control alt" type="text"
-                       placeholder="Provincia:" maxlength="60"
-                       value="<%=@order.customer_address ? @order.customer_address.state : ''%>">
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <input name="country" id="country" class="form-control alt" type="text"
-                       placeholder="País:"  maxlength="50"
-                       value="<%=@order.customer_address ? @order.customer_address.country : ''%>">
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <input name="zip" id="zip" class="form-control alt" type="text"
-                       placeholder="Código postal:"  maxlength="10"
-                       value="<%=@order.customer_address ? @order.customer_address.zip : ''%>">
-              </div>
-            </div>
-          </div>
-          <% end %>
-          <% if @order.request_customer_information? %>
-          <br>
-          <h3 class="block-title alt"> <i class="fa fa-angle-down"></i>Datos de los participantes en las actividades</h3>
-            <% item_id = item_description = date = time = nil %>
-            <% position = 0 %>
-            <% @order.order_items.each do |order_item| %>
-               <% if order_item.item_id != item_id || order_item.date != date || order_item.time != time %>
-                  <% position = 0 %>
-                  <% date = order_item.date %>
-                  <% time = order_item.time %>
-                  <% item_id = order_item.item_id %>
-                  <% item_description = order_item.item_description %>
-                  <% if order_item.request_customer_information? %>
-                  <h4 class="widget-title-sub"><%=item_description%>. <%=l(date, '%d %B %Y')%> <%=time%></h4>
-                  <% end %>
-               <% end %>
-               <% if order_item.request_customer_information? %>
-                  <% order_item.order_item_customers.each do |order_item_customer| %>
-                    <% position += 1 %>
-                    <h5 class="widget-title">Cliente <%=position%> - <%=order_item.item_price_description%></h5>
-                    <div class="row">
-                      <input type="hidden" name="order_item_customers[][id]" value="<%=order_item_customer.id%>"/>
-                      <div class="col-md-3">
-                         <div class="form-group">
-                           <input name="order_item_customers[][customer_name]"  title="Nombre" data-toggle="tooltip"
-                                 class="form-control alt" type="text" placeholder="Nombre:" maxlength="80"
-                                 value="<%=order_item_customer.customer_name%>">
-                         </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="form-group">
-                        <input name="order_item_customers[][customer_surname]" title="Apellidos" data-toggle="tooltip"
-                               class="form-control alt" type="text" placeholder="Apellidos:"  maxlength="80"
-                               value="<%=order_item_customer.customer_surname%>">
-                        </div>
-                      </div>
-                      <% if order_item.request_customer_document_id %>
-                      <div class="col-md-3">
-                        <div class="form-group">
-                          <input name="order_item_customers[][document_id]" title="NIF/Pasaporte" data-toggle="tooltip"
-                                 class="form-control alt" type="text" placeholder="NIF/Pasaporte:"  maxlength="50"
-                                 value="<%=order_item_customer.customer_document_id%>">
-                        </div>
-                      </div>
-                      <% end %>
-                      <% if order_item.request_customer_phone %>
-                      <div class="col-md-3">
-                        <div class="form-group">
-                          <input name="order_item_customers[][customer_phone]" title="Teléfono" data-toggle="tooltip"
-                                 class="form-control alt" type="text" placeholder="Teléfono:"  maxlength="15"
-                                 value="<%=order_item_customer.customer_phone%>">
-                        </div>
-                      </div>
-                      <% end %>
-                      <% if order_item.request_customer_email %>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <input name="order_item_customers[][customer_email]" title="Correo electrónico" data-toggle="tooltip"
-                                 class="form-control alt" type="text" placeholder="Corro electrónico:"  maxlength="40"
-                                 value="<%=order_item_customer.customer_email%>">
-                        </div>
-                      </div>
-                      <% end %>
-                      <% if order_item.request_customer_height %>
-                      <div class="col-md-3">
-                        <div class="form-group">
-                          <select name="order_item_customers[][customer_height]"
-                                  class="selectpicker input customer-height" data-live-search="false" data-width="100%"
-                                  data-toggle="tooltip" title="Altura (cm)" data-value="<%=order_item_customer.customer_height%>" data-container="body">
-                          </select>
-                        </div>
-                      </div>
-                      <% end %>
-                      <% if order_item.request_customer_weight %>
-                      <div class="col-md-3">
-                        <div class="form-group">
-                          <select name="order_item_customers[][customer_weight]"
-                                  class="selectpicker input customer-weight" data-live-search="false" data-width="100%"
-                                  data-toggle="tooltip" title="Peso (kg)" data-value="<%=order_item_customer.customer_weight%>" data-container="body">
-                          </select>
-                        </div>
-                      </div>
-                      <% end %>
-                      <% if order_item.request_customer_allergies_intolerances %>
-                      <div class="col-md-12">
-                        <div class="form-group">
-                           <textarea name="order_item_customers[][customer_allergies_or_intolerances]"
-                              class="form-control alt" placeholder="Alergias o intolerancias"
-                              cols="30" rows="10"><%=order_item_customer.customer_allergies_or_intolerances%></textarea>
-                        </div>
-                      </div>
-                      <% end %>
-                      </div>
-                      <br>
-                  <% end %>
-               <% end %>
-            <% end %>
-          <% end %>
-          <div class="row">
-            <div class="overflowed reservation-now">
-              <div>
-                <a id="btn_update_order" class="btn btn-theme pull-right btn-reservation-now" href="#">Actualizar datos</a>
-              </div>
-            </div>
-          </div>
-        </form>
-        <% end %>
-        <!-- EXTRA DATA -->
 
       </div>
       <!-- /CONTENT -->
