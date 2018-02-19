@@ -42,7 +42,13 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
 
       if (this.shopping_cart != null) {
           for (var idx=0;idx<this.shopping_cart.items.length;idx++) {
-              shoppingCartProducts[this.shopping_cart.items[idx].item_id] = this.products[idx];
+              var itemId = this.shopping_cart.items[idx].item_id;
+              for (var n=0;n<this.products.length;n++){
+                if (this.products[n].code == itemId) {
+                    shoppingCartProducts[itemId] = this.products[n];
+                    break;
+                }
+              }
           }
       }
 
