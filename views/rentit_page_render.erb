@@ -18,7 +18,7 @@
   <link type="text/css" rel="stylesheet" href="/rentit/css/style-public-theme-extension.css">
 
   <% if !page.styles_source.nil? && !page.styles_source.empty? %>
-      <%= page.styles_source %>
+    <%= page.styles_source %>
   <% end %>
 
   <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,300">
@@ -28,7 +28,7 @@
   <style type="text/css">
     {% if css_header_background %}
     .header .header-wrapper {
-      background-color: {{ css_header_background }};
+    background-color: {{ css_header_background }};
     }
     {% endif %}
   </style>
@@ -70,17 +70,7 @@
             <div class="swiper-slide">
               <!-- navigation menu -->
               <a href="#" class="menu-toggle-close btn"><i class="fa fa-times"></i></a>
-              <ul class="nav sf-menu">
-                <li class="active"><a href=<%=format_url_with_language('/')%>><%=t.front_end_reservation.home%></a>
-                </li>
-                <li><a href="<%=format_url_with_language('/renting_conditions')%>"><%=t.front_end_reservation.conditions%></a></li>
-                <!--li><a href="/contacto">Contacto</a></li-->
-                <% if (page.variables.has_key?(:languages_translation) and not page.variables[:languages_translation].empty?) %>
-                    <div class="translation_language">
-                      <%= page.variables[:languages_translation]%>
-                    </div>
-                <% end %>
-              </ul>
+              {{ primary_links_menu }}
               <!-- /navigation menu -->
             </div>
           </div>
@@ -100,23 +90,23 @@
 
     <!-- BREADCRUMBS -->
     <% unless page.title.nil? || page.title.empty? %>
-        <section class="page-section breadcrumbs text-center">
-          <div class="container">
-            <div class="page-header">
-              <h1><%=page.title%></h1>
-            </div>
+      <section class="page-section breadcrumbs text-center">
+        <div class="container">
+          <div class="page-header">
+            <h1><%=page.title%></h1>
           </div>
-        </section>
+        </div>
+      </section>
     <% end %>
     <!-- /BREADCRUMBS -->
 
     <!-- PAGE : Booking selector -->
     <% if (page.variables.has_key?(:booking_selector) and not page.variables[:booking_selector].empty?) %>
-        <section class="booking-selector page-section dark">
-          <div class="container">
-            <%= page.variables[:booking_selector] %>
-          </div>
-        </section>
+      <section class="booking-selector page-section dark">
+        <div class="container">
+          <%= page.variables[:booking_selector] %>
+        </div>
+      </section>
     <% end %>
 
     <!-- PAGE -->
@@ -127,7 +117,7 @@
         <%= page.content %>
 
         <% if (page.variables.has_key?(:primary_links_menu) and not page.variables[:primary_links_menu].empty?) %>
-            <%= page.variables[:primary_links_menu]%>
+          <%= page.variables[:primary_links_menu]%>
         <% end %>
 
       </div>
@@ -142,7 +132,7 @@
     <div class="footer-meta">
       <div class="container">
         <div class="row">
-          <div class="col-sm-offset-4 col-sm-4">
+          <div class="col-sm-offset-2 col-sm-4">
             <ul class="media-list contact-list">
               <li class="media">
                 <div class="media-body"><strong>{{site_company_name}}</strong></div>
@@ -169,6 +159,11 @@
                 <div class="media-body"><%=t.frontend_web.company.email%>: {{site_company_email}}</div>
               </li>
             </ul>
+          </div>
+          <div class="col-sm-4">
+            <div class="widget widget-categories">
+              {{ secondary_links_menu }}
+            </div>
           </div>
         </div>
         <div class="row">
@@ -205,7 +200,7 @@
 <script src="/rentit/js/theme.js"></script>
 
 <% if !page.scripts_source.nil? && !page.scripts_source.empty? %>
-    <%= page.scripts_source %>
+  <%= page.scripts_source %>
 <% end %>
 
 </body>
