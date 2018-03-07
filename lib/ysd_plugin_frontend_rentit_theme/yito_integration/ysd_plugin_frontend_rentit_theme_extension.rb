@@ -46,13 +46,14 @@ module YsdPluginFrontendRentitTheme
       # Apply the layout
       if layout_name == 'page_render' and SystemConfiguration::Variable.get_value('frontend.skin', nil) == 'rentit'
 
+        # Builds the primary link menu
         primary_links_menu = Site::Menu.first(name: 'primary_links')
         primary_links_menu_render = self.build_primary_links_menu(primary_links_menu,
                                                                   context[:app].request.path_info,
                                                                   context[:app].session[:locale],
                                                                   context[:app].settings.default_locale,
                                                                   context[:app].settings.multilanguage_site)
-
+        # Builds the secondary links menu
         secondary_links_menu = Site::Menu.first(name: 'secondary_links')
         secondary_links_menu_render = self.build_secondary_links_menu(secondary_links_menu,
                                                                       context[:app].request.path_info,
