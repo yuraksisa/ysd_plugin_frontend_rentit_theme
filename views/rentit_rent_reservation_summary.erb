@@ -14,7 +14,7 @@
 
         <!-- PRODUCT(S) INFORMATION -->
         <h3 class="block-title alt">
-          <i class="fa fa-angle-down"></i><%=t.front_end_reservation.booking_detail_product_title%>
+          <i class="fa"></i><%=t.front_end_reservation.booking_detail_product_title%>
         </h3>
 
         <% @booking.booking_lines.each do |booking_item| %>
@@ -50,7 +50,7 @@
         <!--EXTRAS INFORMATION -->
         <% if @booking.booking_extras.size > 0 %>
         <h3 class="block-title alt">
-          <i class="fa fa-angle-down"></i><%=t.front_end_reservation.booking_detail_extras_title%>
+          <i class="fa"></i><%=t.front_end_reservation.booking_detail_extras_title%>
         </h3>
         <div class="car-big-card alt">
           <div class="row">
@@ -76,7 +76,7 @@
 
         <!-- CUSTOMER INFORMATION -->
         <h3 class="block-title alt">
-          <i class="fa fa-angle-down"></i><%=t.front_end_reservation.booking_detail_customer_title%>
+          <i class="fa"></i><%=t.front_end_reservation.booking_detail_customer_title%>
         </h3>
 
         <div class="form-delivery">
@@ -113,11 +113,11 @@
         <% if @booking_item_family.driver or @booking_item_family.named_resources or @booking_item_family.height or
               @booking_item_family.weight %>
           <div class="alert alert-warning">
-            <p>Por favor, complete los datos para agilizar la realización de la actividad en la fecha prevista</p>
+            <p><%=t.front_end_reservation.summary_page.fill_data_message%></p>
           </div>
           <form name="booking_information_form" id="booking_information_form" name="order_form" class="form-delivery" method="post">
             <% if @booking_item_family.driver %>
-              <h3 class="block-title alt"> <i class="fa fa-angle-down"></i>Dirección del cliente</h3>
+              <h3 class="block-title alt"> <i class="fa"></i><%=t.front_end_reservation.summary_page.customer_address%></h3>
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
@@ -172,11 +172,11 @@
             <% end %>
             <% if @booking_item_family.named_resources or @booking_item_family.height or @booking_item_family.weight %>
               <br>
-              <h3 class="block-title alt"> <i class="fa fa-angle-down"></i>Datos de los participantes en las actividades</h3>
+              <h3 class="block-title alt"> <i class="fa"></i><%=t.front_end_reservation.summary_page.data_of_the_participants%></h3>
               <% @booking.booking_lines.each do |booking_line| %>
                   <h4 class="widget-title-sub"><%=booking_line.quantity%> <%=booking_line.item_description%></h4>
                   <% booking_line.booking_line_resources.each do |booking_line_resource| %>
-                    <h5 class="widget-title">Participante</h5>
+                    <h5 class="widget-title"><%=t.front_end_reservation.summary_page.participant%></h5>
                     <div class="row">
                       <input type="hidden" name="booking_line_resources[<%=booking_line_resource.id%>][id]" value="<%=booking_line_resource.id%>"/>
                       <% if @booking_item_family.named_resources %>
@@ -237,7 +237,7 @@
                     </div>
                     <% if booking_line_resource.pax == 2 %>
                     <br>
-                    <h5 class="widget-title">Participante</h5>
+                    <h5 class="widget-title"><%=t.front_end_reservation.summary_page.participant%></h5>
                     <div class="row">
                       <% if @booking_item_family.named_resources %>
                         <div class="col-md-3">
@@ -304,7 +304,7 @@
             <div class="row">
               <div class="overflowed reservation-now">
                 <div>
-                  <a id="btn_update_reservation" class="btn btn-theme pull-right btn-reservation-now" href="#">Actualizar datos</a>
+                  <a id="btn_update_reservation" class="btn btn-theme pull-right btn-reservation-now" href="#"><%=t.front_end_reservation.summary_page.update_data_button%></a>
                 </div>
               </div>
             </div>
@@ -315,7 +315,7 @@
 
         <!-- PAYMENT -->
         <% if @booking.can_pay? and @booking.can_pay_deposit? and (@payment_methods.tpv_virtual or @payment_methods.paypal)%>
-          <h3 class="block-title alt"><i class="fa fa-angle-down"></i><%=t.front_end_reservation.payment_title%></h3>
+          <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_reservation.payment_title%></h3>
           <% if @booking.can_pay_deposit? %>
           <div class="alert alert-success">
             <p><%=t.front_end_reservation.payment_to_confirm_reservation(@deposit, "(%.2f #{@currency})" % @booking.booking_amount)%></p>

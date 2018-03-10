@@ -12,7 +12,7 @@
 
                         <!-- Extras -->
                         <div id="extras_container" style="display:none">
-                          <h3 class="block-title alt"><i class="fa fa-angle-down"></i><%=t.front_end_reservation.extras_title%></h3>
+                          <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_reservation.extras_title%></h3>
                           <form role="form" class="form-extras">
 
                               <div class="row">
@@ -31,7 +31,7 @@
 
                         <!-- Customer -->
 
-                        <h3 class="block-title alt"><i class="fa fa-angle-down"></i><%=t.front_end_reservation.customer_title%></h3>
+                        <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_reservation.customer_title%></h3>
                         <form id="form-reservation" name="reservation_form" class="form-delivery" method="post">
                             <input type="hidden" name="customer_language" value="<%=session[:locale]%>"/>
                             <div class="row">
@@ -75,7 +75,7 @@
                         </form>
 
                         <!-- Additional information -->
-                        <h3 class="block-title alt"><i class="fa fa-angle-down"></i><%=t.front_end_reservation.additional_information_title%></h3>
+                        <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_reservation.additional_information_title%></h3>
                         <form action="#" class="form-additional">
                           <div class="row">
                             <div class="col-md-12">
@@ -137,7 +137,7 @@
 <script type="text/tpml" id="script_product_detail">
 
   <h3 class="block-title alt">
-    <i class="fa fa-angle-down"></i><%=t.front_end_reservation.product_information_title%>
+    <i class="fa"></i><%=t.front_end_reservation.product_information_title%>
   </h3>
   <div class="car-big-card alt">
     <div class="row">
@@ -171,7 +171,7 @@
 <script type="text/tpml" id="script_products_detail">
 
   <h3 class="block-title alt">
-    <i class="fa fa-angle-down"></i><%=t.front_end_reservation.products_information_title%>
+    <i class="fa"></i><%=t.front_end_reservation.products_information_title%>
   </h3>
   <%% for (var idx=0; idx<shopping_cart.items.length; idx++) { %>
   <div class="car-big-card alt">
@@ -326,7 +326,7 @@
 
 <!-- Script payment -->
 <script type="text/tmpl" id="script_payment_detail">
-  <h3 class="block-title alt"><i class="fa fa-angle-down"></i><%=t.front_end_reservation.payment_title%></h3>
+  <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_reservation.payment_title%></h3>
   <%% if (sales_process.can_pay) { %>
   <div class="alert alert-success">
     <p><%=t.front_end_reservation.payment_to_confirm_reservation(@deposit)%></p>
