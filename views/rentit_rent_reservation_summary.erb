@@ -399,13 +399,13 @@
                   <% if @booking.time_from_cost > 0 %>
                   <li><%=t.front_end_reservation.reservation_summary_pickup_time_supplement%>: <span class="pull-right"><%= '%.2f' % @booking.extras_cost%>€</span></li>
                   <% end %>
-                  <% if @booking.time_from_cost > 0 %>
+                  <% if @booking.pickup_place_cost > 0 %>
                   <li><%=t.front_end_reservation.reservation_summary_pickup_place_supplement%>: <span class="pull-right"><%='%.2f' % @booking.pickup_place_cost%>€</span></li>
                   <% end %>
                   <% if @booking.time_to_cost > 0 %>
                   <li><%=t.front_end_reservation.reservation_summary_return_time_supplement%>: <span class="pull-right"><%='%.2f' % @booking.time_to_cost%>€</span></li>
                   <% end %>
-                  <% if @booking.time_from_cost > 0 %>
+                  <% if @booking.return_place_cost > 0 %>
                   <li><%=t.front_end_reservation.reservation_summary_return_place_supplement%>: <span class="pull-right"><%='%.2f' % @booking.return_place_cost%>€</span></li>
                   <% end %>
                   <% if total_cost_includes_deposit %>

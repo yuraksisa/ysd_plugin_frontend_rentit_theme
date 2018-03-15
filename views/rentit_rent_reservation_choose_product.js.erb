@@ -10,6 +10,7 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
 
     requestLanguage: <% if locale=locale_to_translate_into %>'<%=locale%>'<%else%>null<%end%>,
     minDays: <%=booking_min_days%>,
+    allowCustomPlaces : <%=pickup_return_places_configuration == 'list+custom'%>,
     data : null,
     shopping_cart: null,
     products: null,
@@ -277,6 +278,36 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
       $('#date_to').datepicker('setDate', dateTo );
       $('#date_to').datepicker('option', 'minDate', dateTo);
 
+    },
+
+    pickupPlaceChanged: function() {
+
+        if (model.allowCustomPlaces) {
+            if ($('#pickup_place').val() == 'other') {
+                $('input[name=custom_pickup_place]').val('true');
+                $('#another_pickup_place_group').show();
+            }
+            else {
+                $('input[name=custom_pickup_place]').val('false');
+                $('#another_pickup_place_group').hide();
+            }
+        }
+
+    },
+
+    returnPlaceChanged: function() {
+
+        if (model.allowCustomPlaces) {
+            if ($('#return_place').val() == 'other') {
+                $('input[name=custom_return_place]').val('true');
+                $('#another_return_place_group').show();
+            }
+            else {
+                $('input[name=custom_return_place]').val('false');
+                $('#another_return_place_group').hide();
+            }
+        }
+
     }
 
   };
@@ -331,10 +362,22 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
         var pickupPlace = new SelectSelector('pickup_place',
             dataSourcePickupPlaces, null, false, '',
             function() {
+                if (model.allowCustomPlaces) {
+                    $('#pickup_place').append($('<option>', {
+                        value: 'other',
+                        text : '<%=t.front_end_reservation.another_place%>'
+                    }));
+                }
                 $('#pickup_place').selectpicker();
                 model.loadedPickupPlaces = true;
                 model.checkLoading();
             } );
+
+        if (model.allowCustomPlaces) {
+            $('#pickup_place').bind('change', function() {
+                controller.pickupPlaceChanged();
+            });
+        }
 
         var returnPlacesURL = '/api/booking/frontend/return-places';
         if (model.requestLanguage != null) {
@@ -346,10 +389,22 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
         var returnPlace = new SelectSelector('return_place',
             dataSourcePickupPlaces, null, false, '',
             function() {
+                if (model.allowCustomPlaces) {
+                    $('#return_place').append($('<option>', {
+                        value: 'other',
+                        text : '<%=t.front_end_reservation.another_place%>'
+                    }));
+                }
                 $('#return_place').selectpicker();
                 model.loadedReturnPlaces = true;
                 model.checkLoading();
             } );
+
+        if (model.allowCustomPlaces) {
+            $('#return_place').bind('change', function() {
+                controller.returnPlaceChanged();
+            });
+        }
 
     },
 
@@ -398,9 +453,26 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
 
     showSideBar: function() { /** Show the sidebar **/
 
-        $('#pickup_place').val(model.shopping_cart.pickup_place ? model.shopping_cart.pickup_place.replace(/\+/g, ' ') : model.shopping_cart.pickup_place);
+        if (model.shopping_cart.custom_pickup_place) {
+            $('#pickup_place').val('other');
+            $('#pickup_place_other').html(model.shopping_cart.pickup_place);
+            $('input[name=custom_pickup_place]').val('true');
+            $('#another_pickup_place_group').show();
+        }
+        else {
+            $('#pickup_place').val(model.shopping_cart.pickup_place ? model.shopping_cart.pickup_place.replace(/\+/g, ' ') : model.shopping_cart.pickup_place);
+        }
         $('#pickup_place').selectpicker('refresh');
-        $('#return_place').val(model.shopping_cart.return_place ? model.shopping_cart.return_place.replace(/\+/g, ' ') : model.shopping_cart.return_place);
+
+        if (model.shopping_cart.custom_return_place) {
+            $('#return_place').val('other');
+            $('#return_place_other').html(model.shopping_cart.return_place);
+            $('input[name=custom_return_place]').val('true');
+            $('#another_return_place_group').show();
+        }
+        else {
+            $('#return_place').val(model.shopping_cart.return_place ? model.shopping_cart.return_place.replace(/\+/g, ' ') : model.shopping_cart.return_place);
+        }
         $('#return_place').selectpicker('refresh');
 
         if (model.shopping_cart.date_from instanceof Date) {

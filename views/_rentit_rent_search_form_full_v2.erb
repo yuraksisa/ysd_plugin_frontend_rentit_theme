@@ -13,14 +13,28 @@
                       <div class="row row-inputs">
                         <div class="container-fluid">
                           <div class="col-sm-6">
-                            <div class="form-group has-icon has-label">
-                              <label for="pickup_place"><%=t.front_end_reservation.pickup_place%></label>
-                              <select name="pickup_place" id="pickup_place"
-                                  class="selectpicker input-price" data-live-search="true" data-width="100%"
-                                  data-toggle="tooltip" title="Select" data-container="body">
-                              </select>
-                              <span class="form-control-icon"><i class="fa fa-map-marker"></i></span>
-                            </div>
+                            <% if ['list','list+custom'].include?(pickup_return_places_configuration) %>
+                              <div class="form-group has-icon has-label">
+                                <label for="pickup_place"><%=t.front_end_reservation.pickup_place%></label>
+                                <select name="pickup_place" id="pickup_place"
+                                    class="selectpicker input-price" data-live-search="true" data-width="100%"
+                                    data-toggle="tooltip" title="Select" data-container="body">
+                                </select>
+                                <span class="form-control-icon"><i class="fa fa-map-marker"></i></span>
+                              </div>
+                              <% if pickup_return_places_configuration == 'list+custom'%>
+                              <div id="another_pickup_place_group" class="form-group" style="display:none">
+                                <textarea name="pickup_place_other" id="pickup_place_other" class="form-control" placeholder="<%=t.front_end_reservation.pickup_place_address%>"></textarea>
+                                <input type="hidden" name="custom_pickup_place" value="false"/>
+                              </div>
+                              <% end %>
+                            <% else %>
+                              <div class="form-group has-icon has-label">
+                                <label for="pickup_place"><%=t.front_end_reservation.pickup_place%></label>
+                                <textarea name="pickup_place_other" id="pickup_place_other" class="form-control" placeholder="<%=t.front_end_reservation.pickup_place_address%>"></textarea>
+                                <span class="form-control-icon"><i class="fa fa-map-marker"></i></span>
+                              </div>
+                            <% end %>
                           </div>
                           <div class="col-sm-3">
                             <div class="form-group has-icon has-label">
@@ -45,14 +59,28 @@
                       <div class="row row-inputs">
                         <div class="container-fluid">
                           <div class="col-sm-6">
-                            <div class="form-group has-icon has-label">
-                              <label for="return_place"><%=t.front_end_reservation.return_place%></label>
-                              <select name="return_place" id="return_place"
-                                  class="selectpicker input-price" data-live-search="true" data-width="100%"
-                                  data-toggle="tooltip" title="Select" data-container="body">
-                              </select>
-                              <span class="form-control-icon"><i class="fa fa-map-marker"></i></span>
-                            </div>
+                            <% if ['list','list+custom'].include?(pickup_return_places_configuration) %>
+                              <div class="form-group has-icon has-label">
+                                <label for="return_place"><%=t.front_end_reservation.return_place%></label>
+                                <select name="return_place" id="return_place"
+                                    class="selectpicker input-price" data-live-search="true" data-width="100%"
+                                    data-toggle="tooltip" title="Select" data-container="body">
+                                </select>
+                                <span class="form-control-icon"><i class="fa fa-map-marker"></i></span>
+                              </div>
+                              <% if pickup_return_places_configuration == 'list+custom'%>
+                                <div id="another_return_place_group" class="form-group" style="display:none">
+                                  <textarea name="return_place_other" id="return_place_other" class="form-control" placeholder="<%=t.front_end_reservation.return_place_address%>"></textarea>
+                                  <input type="hidden" name="custom_return_place" value="false"/>
+                                </div>
+                              <% end %>
+                            <% else %>
+                              <div class="form-group has-icon has-label">
+                                <label for="pickup_place"><%=t.front_end_reservation.pickup_place%></label>
+                                <textarea name="pickup_place_other" id="return_place_other" class="form-control" placeholder="<%=t.front_end_reservation.pickup_place_address%>"></textarea>
+                                <span class="form-control-icon"><i class="fa fa-map-marker"></i></span>
+                              </div>
+                            <% end %>
                           </div>
                           <div class="col-sm-3">
                             <div class="form-group has-icon has-label">

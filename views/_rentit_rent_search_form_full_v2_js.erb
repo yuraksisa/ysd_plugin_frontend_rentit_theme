@@ -10,6 +10,7 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
   selectorModel = {
       requestLanguage: <% if locale=locale_to_translate_into %>'<%=locale%>'<%else%>null<%end%>,
       minDays   : <%=booking_min_days%>,
+      allowCustomPlaces : <%=pickup_return_places_configuration == 'list+custom'%>
   };
 
   selectorController = {
@@ -28,6 +29,37 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
         $('#date_to').datepicker('option', 'minDate', dateTo);
 
       },
+
+      pickupPlaceChanged: function() {
+
+         if (selectorModel.allowCustomPlaces) {
+             if ($('#pickup_place').val() == 'other') {
+                 $('input[name=custom_pickup_place]').val('true');
+                 $('#another_pickup_place_group').show();
+             }
+             else {
+                 $('input[name=custom_pickup_place]').val('false');
+                 $('#another_pickup_place_group').hide();
+             }
+         }
+
+      },
+
+      returnPlaceChanged: function() {
+
+          if (selectorModel.allowCustomPlaces) {
+              if ($('#return_place').val() == 'other') {
+                  $('input[name=custom_return_place]').val('true');
+                  $('#another_return_place_group').show();
+              }
+              else {
+                  $('input[name=custom_return_place]').val('false');
+                  $('#another_return_place_group').hide();
+              }
+          }
+
+      },
+
       formSearchClick: function() {
         <% if booking_item_family.driver and driver_age_rules and driver_age_rule_definition and !driver_age_rule_definition.driver_age_rules.empty?  %>
         if ($('#driver_age_rule option:selected').attr('allowed') == 'false') {
@@ -93,10 +125,23 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
 																													{'id':'id','description':'name'});
         var pickupPlace = new SelectSelector('pickup_place', 
         		dataSourcePickupPlaces, null, false, '',
-                function() { 
+                function() {
+                  if (selectorModel.allowCustomPlaces) {
+                      $('#pickup_place').append($('<option>', {
+                          value: 'other',
+                          text : '<%=t.front_end_reservation.another_place%>'
+                      }));
+                  }
                 	$('#pickup_place').selectpicker();
                   $('#pickup_place').selectpicker('refresh');
                 } );
+
+        if (selectorModel.allowCustomPlaces) {
+            $('#pickup_place').bind('change', function() {
+               selectorController.pickupPlaceChanged();
+            });
+        }
+
 
         var returnPlacesURL = '/api/booking/frontend/return-places';
         if (selectorModel.requestLanguage != null) {
@@ -107,10 +152,22 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
 																													{'id':'id','description':'name'});
         var returnPlace = new SelectSelector('return_place', 
         		dataSourcePickupPlaces, null, false, '',
-                function() { 
+                function() {
+                  if (selectorModel.allowCustomPlaces) {
+                      $('#return_place').append($('<option>', {
+                          value: 'other',
+                          text : '<%=t.front_end_reservation.another_place%>'
+                      }));
+                  }
                 	$('#return_place').selectpicker();
                 	$('#return_place').selectpicker('refresh');
-                } );          
+                } );
+
+        if (selectorModel.allowCustomPlaces) {
+            $('#return_place').bind('change', function() {
+                selectorController.returnPlaceChanged();
+            });
+        }
 
   	},
 
