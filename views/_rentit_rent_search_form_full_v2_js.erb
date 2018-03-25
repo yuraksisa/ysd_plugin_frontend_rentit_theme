@@ -10,7 +10,9 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
   selectorModel = {
       requestLanguage: <% if locale=locale_to_translate_into %>'<%=locale%>'<%else%>null<%end%>,
       minDays   : <%=booking_min_days%>,
-      allowCustomPlaces : <%=pickup_return_places_configuration == 'list+custom'%>
+      allowCustomPlaces : <%=pickup_return_places_configuration == 'list+custom'%>,
+      pickupReturnPlaces: <%if booking_item_family.pickup_return_place%>true<%else%>false<%end%>,
+      timeToFrom: <%if booking_item_family.time_to_from%>true<%else%>false<%end%>
   };
 
   selectorController = {
@@ -79,8 +81,12 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
 
   		this.setupForm();
   	  this.setupDateControls();
-  		this.loadPickupReturnPlaces();
-  		this.loadPickupReturnTime();
+  	  if (selectorModel.pickupReturnPlaces) {
+          this.loadPickupReturnPlaces();
+      }
+      if (selectorModel.timeToFrom) {
+          this.loadPickupReturnTime();
+      }
 
   	},
 

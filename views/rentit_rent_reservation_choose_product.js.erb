@@ -11,6 +11,8 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
     requestLanguage: <% if locale=locale_to_translate_into %>'<%=locale%>'<%else%>null<%end%>,
     minDays: <%=booking_min_days%>,
     allowCustomPlaces : <%=pickup_return_places_configuration == 'list+custom'%>,
+    pickupReturnPlaces: <% if booking_item_family.pickup_return_place%>true<%else%>false<%end%>,
+    timeToFrom: <% if booking_item_family.time_to_from%>true<%else%>false<%end%>,
     data : null,
     shopping_cart: null,
     products: null,
@@ -321,8 +323,26 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
       // Load the frontend controls
       this.setupDateControls();
       $('#full_loader').show();
-      this.loadPickupReturnPlaces();
-      this.loadPickupReturnTime();
+
+      if (model.pickupReturnPlaces) {
+          this.loadPickupReturnPlaces();
+      }
+      else {
+          model.loadedPickupPlaces = true;
+          model.loadedReturnPlaces = true;
+      }
+      if (model.timeToFrom) {
+          this.loadPickupReturnTime();
+      }
+      else {
+          model.loadedPickupTimes = true;
+          model.loadedReturnTimes = true;
+      }
+
+      if (!model.pickupReturnPlaces || !model.timeToFrom) {
+          model.checkLoading();
+      }
+
 
   	},
 
