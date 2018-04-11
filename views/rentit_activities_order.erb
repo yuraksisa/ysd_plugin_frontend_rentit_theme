@@ -281,10 +281,10 @@
           <% end %>
           <div class="panel-group payments-options" id="accordion" role="tablist" aria-multiselectable="true">
             <% if @payment_methods.tpv_virtual %>
-              <div class="panel panel-default">
+              <div id="tpv_virtual_container" class="panel panel-default" <%unless @payment_methods.paypal%>style="display:none"<%end%>>
                 <div class="panel-heading" role="tab" id="headingThree">
                   <h4 class="panel-title">
-                    <a class="collapsed" data-payment-method="<%=@payment_methods.tpv_virtual.id%>" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapseThree">
+                    <a class="<% unless @payment_methods.paypal%>show<%else%>collapsed<%end%>" data-payment-method="<%=@payment_methods.tpv_virtual.id%>" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapseThree">
                       <span class="dot"></span> <%=t.front_end_reservation.credit_card_payment%>
                     </a>
                     <span class="overflowed pull-right">
@@ -295,10 +295,10 @@
               </div>
             <% end %>
             <% if @payment_methods.paypal %>
-              <div class="panel panel-default">
+              <div id="paypal_container" class="panel panel-default" <%unless @payment_methods.tpv_virtual%>style="display:none"<%end%>>
                 <div class="panel-heading" role="tab" id="heading4">
                   <h4 class="panel-title">
-                    <a class="collapsed" data-payment-method="paypal_standard" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                    <a class="<% unless @payment_methods.tpv_virtual%>show<%else%>collapsed<%end%>" data-payment-method="paypal_standard" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
                       <span class="dot"></span> <%=t.front_end_reservation.paypal_payment%>
                     </a>
                     <span class="overflowed pull-right">

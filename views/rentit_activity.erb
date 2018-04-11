@@ -43,6 +43,42 @@
 
 </script>
 
+<script type="text/tmpl" id="script_one_time_selector">
+
+      <h4 class="widget-title"><%=t.front_end_activities.activity_page.reservation_title%></h4>
+      <div class="widget-content">
+        <!--h4 class="widget-title-sub"><%=t.front_end_activities.activity_page.multiple_dates_choose_date_title%></h4-->
+        <!-- form -->
+        <div class="form-search light">
+          <form name="select_date_form" id="select_date_form">
+            <input type="hidden" name="activity_id" id="activity_id" value="<%%=activity.id%>"/>
+            <div id="tickets"></div>
+          </form>
+        </div>
+      </div>
+
+</script>
+
+<script type="text/tmpl" id="script_multiple_dates_selector">
+
+      <h4 class="widget-title"><%=t.front_end_activities.activity_page.reservation_title%></h4>
+      <div class="widget-content">
+        <h4 class="widget-title-sub"><%=t.front_end_activities.activity_page.multiple_dates_choose_date_title%></h4>
+        <!-- form -->
+        <div class="form-search light">
+          <form name="select_date_form" id="select_date_form">
+            <input type="hidden" name="activity_id" id="activity_id" value="<%%=activity.id%>"/>
+            <select name="activity_date_id" id="activity_date_id"
+                    class="selectpicker" data-live-search="true" data-width="100%"
+                    data-toggle="tooltip" title="Select" data-container="body">
+            </select>
+            <div id="tickets"></div>
+          </form>
+        </div>
+      </div>
+
+</script>
+
 <script type="text/tmpl" id="script_cyclic_calendar">
 
       <h4 class="widget-title"><%=t.front_end_activities.activity_page.reservation_title%></h4>
@@ -73,7 +109,7 @@
         <h4 class="widget-title-sub"><%=t.front_end_activities.activity_page.cyclic_choose_turn_title%></h4>
         <%% if (morningTurns.length > 0) {%>
         <div class="form-group has-icon has-label">
-        <label for="turn"><%=t.activity.mornings%></label>
+        <label for="turn"><%=t.front_end_activities.activity_page.morning_turns%></label>
         <br>
         <%% for (var idx=0;idx<morningTurns.length;idx++) { %>
           <input type="radio" name="turn" value="<%%=morningTurns[idx]%>">&nbsp;<%%=morningTurns[idx]%></input>
@@ -82,13 +118,13 @@
         <%% } %>
 
         <%% if (afternoonTurns.length > 0) {%>
-        <h5 class="smaller_text"><%=t.activity.afternoons%></h4>
+        <h5 class="smaller_text"><%=t.front_end_activities.activity_page.afternoon_turns%></h4>
         <%% } %>
         <%% for (var idx=0;idx<afternoonTurns.length;idx++) { %>
             <input type="radio" name="turn" value="<%%=afternoonTurns[idx]%>">&nbsp;<%%=afternoonTurns[idx]%></input>
         <%% } %>
         <%% if (nightTurns.length > 0) {%>
-        <h5 class="smaller_text"><%=t.activity.evenings%></h4>
+        <h5 class="smaller_text"><%=t.front_end_activities.activity_page.evening_turns%></h4>
         <%% } %>
         <%% for (var idx=0;idx<nightTurns.length;idx++) { %>
             <input type="radio" name="turn" value="<%%=nightTurns[idx]%>">&nbsp;<%%=nightTurns[idx]%></input>

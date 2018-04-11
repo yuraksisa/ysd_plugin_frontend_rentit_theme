@@ -6,6 +6,7 @@ require(['jquery','ysdtemplate',
 
       model = { // THE MODEL
 
+          requestLanguage: <% if locale=locale_to_translate_into %>'<%=locale%>'<%else%>null<%end%>,
           shoppingCart: null,
           shoppingCartProducts: null,
           payment: null,
@@ -14,6 +15,9 @@ require(['jquery','ysdtemplate',
 
           loadShoppingCart: function() {
               var url = '/api/booking-activities/frontend/shopping-cart';
+              if (model.requestLanguage != null) {
+                  url += '?lang='+model.requestLanguage;
+              }
               $.ajax({
                   type: 'GET',
                   url: url,
@@ -39,7 +43,12 @@ require(['jquery','ysdtemplate',
 
           createOrder: function() {
 
-              this.paymentMethod = $('#accordion a').not('.collapsed').attr('data-payment-method');
+              if (this.shopping_cart.can_pay_deposit || this.shopping_cart.can_pay_total) {
+                  this.paymentMethod = $('#accordion a').not('.collapsed').attr('data-payment-method');
+              }
+              else {
+                  this.paymentMethod = 'none';
+              }
 
               var order = $('form[name=reservation_form]').formParams(false);
               order.comments = $('#comments').val();
@@ -214,9 +223,13 @@ require(['jquery','ysdtemplate',
           },
 
           updatePayment: function() { // Update the payment
-              var paymentInfo = tmpl('script_payment_detail')(
-                  {shopping_cart: model.shoppingCart});
-              $('#payment_detail').html(paymentInfo);
+
+              if (model.shoppingCart.can_pay_deposit ||
+                  model.shoppingCart.can_pay_total) {
+                  var paymentInfo = tmpl('script_payment_detail')(
+                      {shopping_cart: model.shoppingCart});
+                  $('#payment_detail').html(paymentInfo);
+              }
 
               if (model.shoppingCart.can_make_request) {
                   $('#btn_reservation').html('<%=t.front_end_activities.checkout_page.request_reservation%>');
@@ -224,6 +237,13 @@ require(['jquery','ysdtemplate',
               else {
                   $('#btn_reservation').html('<%=t.front_end_activities.checkout_page.pay%>');
               }
+
+              // If there is only one option, choose it and hide
+              if ($('#accordion').children().length == 1) {
+                  $('#accordion').children().hide();
+                  $('#accordion').children().find('a').trigger('click');
+              }
+
           }
 
       };

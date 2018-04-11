@@ -61,6 +61,8 @@ module YsdPluginFrontendRentitTheme
                                                                       context[:app].settings.default_locale,
                                                                       context[:app].settings.multilanguage_site)
 
+        embedded = context[:app].request.params['embedded'] ? context[:app].request.params['embedded'].to_bool : false
+
         theme_attributes = {'css_header_background' => SystemConfiguration::Variable.get_value('frontend.skin.rentit.css.header_background','#fbfbfb'),
                             'site_company_name' => SystemConfiguration::Variable.get_value('site.company.name', '.'),
                             'site_company_document_id' => SystemConfiguration::Variable.get_value('site.company.document_id', '.'),
@@ -78,7 +80,8 @@ module YsdPluginFrontendRentitTheme
                             'site_company_instagram' => SystemConfiguration::Variable.get_value('site.company.instagram', '.'),
                             'year' => Date.today.year,
                             'primary_links_menu' => primary_links_menu_render,
-                            'secondary_links_menu' => secondary_links_menu_render
+                            'secondary_links_menu' => secondary_links_menu_render,
+                            'embedded' => embedded
         }
 
         # template

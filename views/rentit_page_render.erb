@@ -49,6 +49,7 @@
 
   <%= partial :loader %>
 
+  {% unless embedded == true %}
   <!-- HEADER -->
   <header class="header fixed">
     <div class="header-wrapper">
@@ -83,6 +84,7 @@
     </div>
   </header>
   <!-- /HEADER -->
+  {% endunless %}
 
   <!-- CONTENT AREA -->
   <div class="content-area">
@@ -126,6 +128,7 @@
   </div>
   <!-- /CONTENT AREA -->
 
+  {% unless embedded == true %}
   <!-- FOOTER -->
   <footer class="footer">
 
@@ -192,7 +195,7 @@
   <!-- /FOOTER -->
 
   <div id="to-top" class="to-top"><i class="fa fa-angle-up"></i></div>
-
+  {% endunless %}
 </div>
 <!-- /WRAPPER -->
 

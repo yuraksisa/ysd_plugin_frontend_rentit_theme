@@ -115,17 +115,6 @@
                             <div id="reservation_detail">
                             </div>
                         </div>
-                        <!--div class="widget shadow widget-helping-center" style="display:none">
-                            <h4 class="widget-title">Atención al cliente</h4>
-                            <div class="widget-content">
-                                <p>Vivamus eget nibh. Etiam cursus leo vel metus. Nulla facilisi. Aenean nec eros.</p>
-                                <h5 class="widget-title-sub">+34 666 10 10 10</h5>
-                                <p><a href="mailto:support@supportcenter.com">support@mybooking.es</a></p>
-                                <div class="button">
-                                    <a href="#" class="btn btn-block btn-theme btn-theme-dark">Centro de soporte</a>
-                                </div>
-                            </div>
-                        </div-->
                     </aside>
                     <!-- /SIDEBAR -->
 
@@ -326,14 +315,13 @@
 
 <!-- Script payment -->
 <script type="text/tmpl" id="script_payment_detail">
+
   <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_reservation.payment_title%></h3>
-  <%% if (sales_process.can_pay) { %>
   <div class="alert alert-success">
     <p><%=t.front_end_reservation.payment_to_confirm_reservation(@deposit)%></p>
   </div>
-  <%% } %>
   <div class="panel-group payments-options" id="accordion" role="tablist" aria-multiselectable="true">
-    <div class="panel panel-default">
+    <div id="make_request_container" class="panel panel-default">
       <div class="panel-heading" role="tab" id="headingThree">
         <h4 class="panel-title">
           <a data-payment-method="none" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapseTwo">
@@ -343,9 +331,8 @@
       </div>
       <div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2"></div>
     </div>
-    <%% if (sales_process.can_pay) { %>
     <% if @payment_methods.tpv_virtual %>
-    <div class="panel panel-default">
+    <div id="tpv_virtual_container" class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingThree">
               <h4 class="panel-title">
                   <a class="collapsed" data-payment-method="redsys256" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapseThree">
@@ -364,7 +351,7 @@
     </div>
     <% end %>
     <% if @payment_methods.paypal %>
-    <div class="panel panel-default">
+    <div id="paypal_container" class="panel panel-default">
           <div class="panel-heading" role="tab" id="heading4">
               <h4 class="panel-title">
                   <a class="collapsed" data-payment-method="paypal_standard" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
@@ -378,7 +365,6 @@
           <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4"></div>
     </div>
     <% end %>
-    <%% } %>
   </div>
 </script> 
 

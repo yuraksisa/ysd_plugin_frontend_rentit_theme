@@ -23,7 +23,9 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
                 for (item in order_item_customers) {
                     order['order_item_customers'].push(order_item_customers[item]);
                 }
-
+                if (model.requestLanguage != null) {
+                    url += '?lang='+model.requestLanguage;
+                }
                 var orderJSON = encodeURIComponent(JSON.stringify(order));
 
                 var url = '/api/booking-activities/frontend/order/' + this.orderId;

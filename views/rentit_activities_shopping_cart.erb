@@ -13,7 +13,7 @@
 
         <!-- Customer -->
 
-        <h3 class="block-title alt"><i class="fa fa-angle-down"></i><%=t.front_end_activities.checkout_page.customer_title%></h3>
+        <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_activities.checkout_page.customer_title%></h3>
         <form id="form-reservation" name="reservation_form" class="form-delivery" method="post">
           <input type="hidden" name="customer_language" value="<%=session[:locale]%>"/>
           <div class="row">
@@ -57,7 +57,7 @@
         </form>
 
         <!-- Additional information -->
-        <h3 class="block-title alt"><i class="fa fa-angle-down"></i><%=t.front_end_activities.checkout_page.additional_information_title%></h3>
+        <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_activities.checkout_page.additional_information_title%></h3>
         <form action="#" class="form-additional">
           <div class="row">
             <div class="col-md-12">
@@ -108,7 +108,7 @@
 <script type="text/tpml" id="script_products_detail">
 
   <h3 class="block-title alt">
-    <i class="fa fa-angle-down"></i><%=t.front_end_activities.checkout_page.activities_information_title%>
+    <i class="fa"></i><%=t.front_end_activities.checkout_page.activities_information_title%>
   </h3>
   <%% for (idx in shopping_cart.shopping_cart_items_group_by_date_time_item_id) { %>
   <%% var firstItem = shopping_cart.shopping_cart_items_group_by_date_time_item_id[idx]['items'][0]; %>
@@ -169,21 +169,23 @@
 <!-- Script payment -->
 
 <script type="text/tmpl" id="script_payment_detail">
-  <h3 class="block-title alt"><i class="fa fa-angle-down"></i><%=t.front_end_activities.checkout_page.payment_title%></h3>
+
+  <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_activities.checkout_page.payment_title%></h3>
+
+  <%% if (shopping_cart.can_pay_deposit) { %>
+    <div class="alert alert-success">
+      <p><%=t.front_end_activities.checkout_page.payment_group.deposit_title(@deposit)%></p>
+    </div>
+  <%% } else if (shopping_cart.can_pay_total) { %>
+    <div class="alert alert-success">
+      <p><%=t.front_end_activities.checkout_page.payment_group.total_title%></p>
+    </div>
+  <%% } %>
+
   <div class="panel-group payments-options" id="accordion" role="tablist" aria-multiselectable="true">
 
-    <%% if (shopping_cart.can_pay_deposit) { %>
-      <div class="alert alert-success">
-        <p><%=t.front_end_activities.checkout_page.payment_group.deposit_title(@deposit)%></p>
-      </div>
-    <%% } else if (shopping_cart.can_pay_total) { %>
-      <div class="alert alert-success">
-        <p><%=t.front_end_activities.checkout_page.payment_group.total_title%></p>
-      </div>
-    <%% } %>
-
     <%% if (shopping_cart.can_make_request) { %>
-    <div class="panel panel-default">
+    <div id="make_request_container" class="panel panel-default">
       <div class="panel-heading" role="tab" id="headingThree">
         <h4 class="panel-title">
           <a data-payment-method="none" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapseTwo">
@@ -196,7 +198,7 @@
     <%% } %>
     <%% if (shopping_cart.can_pay_deposit || shopping_cart.can_pay_total) { %>
     <% if @payment_methods.tpv_virtual %>
-    <div class="panel panel-default">
+    <div id="tpv_virtual_container" class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingThree">
               <h4 class="panel-title">
                   <a class="collapsed" data-payment-method="<%=@payment_methods.tpv_virtual.id%>" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapseThree">
@@ -210,7 +212,7 @@
     </div>
     <% end %>
     <% if @payment_methods.paypal %>
-    <div class="panel panel-default">
+    <div id="paypal_container" class="panel panel-default">
           <div class="panel-heading" role="tab" id="heading4">
               <h4 class="panel-title">
                   <a class="collapsed" data-payment-method="paypal_standard" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">

@@ -219,11 +219,18 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
 
       var reservation = $('form[name=reservation_form]').formParams(false);
       reservation.comments = $('#comments').val();
-      reservation.payment = $('#accordion a').not('.collapsed').attr('data-payment-method');
 
-        var reservationJSON = JSON.stringify(reservation);
+      // Check the payment method
+      if (this.sales_process.can_pay) {
+          reservation.payment = $('#accordion a').not('.collapsed').attr('data-payment-method');
+      }
+      else {
+          reservation.payment = 'none';
+      }
 
-        return reservationJSON;
+      var reservationJSON = JSON.stringify(reservation);
+
+      return reservationJSON;
     },
 
 
@@ -482,9 +489,16 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
     },
 
     updatePayment: function() { // Update the payment
-      var paymentInfo = tmpl('script_payment_detail')(
-            {sales_process: model.sales_process});
-      $('#payment_detail').html(paymentInfo);
+      if (model.sales_process.can_pay) {
+          var paymentInfo = tmpl('script_payment_detail')(
+              {sales_process: model.sales_process});
+          $('#payment_detail').html(paymentInfo);
+      }
+      // If there is only one option, choose it and hide
+      if ($('#accordion').children().length == 1) {
+          $('#accordion').children().hide();
+          $('#accordion').children().find('a').trigger('click');
+      }
     }
 
   };
