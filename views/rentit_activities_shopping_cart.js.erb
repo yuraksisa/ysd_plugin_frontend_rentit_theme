@@ -43,7 +43,7 @@ require(['jquery','ysdtemplate',
 
           createOrder: function() {
 
-              if (this.shopping_cart.can_pay_deposit || this.shopping_cart.can_pay_total) {
+              if (this.shoppingCart.can_pay_deposit || this.shoppingCart.can_pay_total) {
                   this.paymentMethod = $('#accordion a').not('.collapsed').attr('data-payment-method');
               }
               else {
@@ -87,8 +87,13 @@ require(['jquery','ysdtemplate',
 
           submitReservationForm: function() {
               if ($('#accept').is(':checked')) {
-                  if ((typeof $('#accordion a').not('.collapsed').attr('data-payment-method')) === 'undefined') {
-                      alert('Debe indicar forma de pago');
+                  if (model.shoppingCart.can_pay_deposit || model.shoppingCart.can_pay_total) {
+                      if ((typeof $('#accordion a').not('.collapsed').attr('data-payment-method')) === 'undefined') {
+                          alert('Debe indicar forma de pago');
+                      }
+                      else {
+                          $('form[name=reservation_form]').submit();
+                      }
                   }
                   else {
                       $('form[name=reservation_form]').submit();

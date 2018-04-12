@@ -297,12 +297,19 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
 
       submitReservationForm: function() {
           if ($('#accept').is(':checked')) {
-              if ((typeof $('#accordion a').not('.collapsed').attr('data-payment-method')) === 'undefined') {
-                  alert('Debe indicar forma de pago');
+
+              if (model.sales_process.can_pay) {
+                  if ((typeof $('#accordion a').not('.collapsed').attr('data-payment-method')) === 'undefined') {
+                      alert('Debe indicar forma de pago');
+                  }
+                  else {
+                      $('form[name=reservation_form]').submit();
+                  }
               }
               else {
                   $('form[name=reservation_form]').submit();
               }
+
           }
           else {
               alert("<%=t.front_end_reservation.conditions_not_read%>");
@@ -322,9 +329,11 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
 
     setupEvents: function() {
 
+  	    /*
   	    $('#accept').bind('click', function(){
   	       controller.conditionsReadClick();
         });
+        */
 
         $('#btn_reservation').bind('click', function() {
            controller.submitReservationForm();
