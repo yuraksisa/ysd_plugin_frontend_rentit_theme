@@ -162,7 +162,9 @@
                </div>
                <div class="caption">
                   <h4 class="caption-title"><%%=product.name%></h4>
-                  <h5 class="caption-title-sub"><%%=new Number(product.price).toFixed(2)%>€</h5>
+                  <h5 class="caption-title-sub">
+                     <%% if (product.base_price != product.price) { %><span style="text-decoration:line-through; text-color: black"><%%=new Number(product.base_price).toFixed(2)%>€</span><%% } %> <%%=new Number(product.price).toFixed(2)%>€
+                  </h5>
                   <div class="caption-text">
                     <%%=product.description%>
                   </div>

@@ -2,7 +2,7 @@
             <div class="row">
               <div class="col-sm-12 col-md-10 col-md-offset-1">
                 <div class="form-search dark">
-                  <form action="<%=format_url_with_language('/reserva/producto')%>" method="post">
+                  <form name="search_form" action="<%=format_url_with_language('/reserva/producto')%>" method="post">
                     <div class="form-title">
                       <i class="fa fa-globe"></i>
                       <h2><%=t.front_end_reservation.search_title%></h2>
@@ -100,8 +100,23 @@
                           </div>
                         </div>
                       </div>
-                      <%= partial :rent_search_form_full_v2_driver, locals: {booking_item_family: booking_item_family, driver_age_rules: driver_age_rules,
-                                                                               driver_age_rule_definition: driver_age_rule_definition} %>
+
+                      <% if driver_partial or promotion_code_partial %>
+                        <div class="row row-inputs">
+                          <div class="container-fluid">
+                            <% if driver_partial %>
+                              <div class="col-sm-6">
+                              <%= driver_partial %>
+                              </div>
+                            <% end %>
+                            <% if promotion_code_partial %>
+                              <div class="col-sm-6">
+                              <%= promotion_code_partial %>
+                              </div>
+                            <% end %>
+                          </div>
+                        </div>
+                      <% end %>
 
                       <div class="row row-submit">
                         <div class="container-fluid">
@@ -159,8 +174,22 @@
                         </div>
                       </div>
 
-                      <%= partial :rent_search_form_full_v2_driver, locals: {booking_item_family: booking_item_family, driver_age_rules: driver_age_rules,
-                                                                               driver_age_rule_definition: driver_age_rule_definition} %>
+                      <% if driver_partial or promotion_code_partial %>
+                        <div class="row row-inputs">
+                          <div class="container-fluid">
+                            <% if driver_partial %>
+                              <div class="col-sm-6">
+                                <%= driver_partial %>
+                              </div>
+                            <% end %>
+                            <% if promotion_code_partial %>
+                              <div class="col-sm-6">
+                                <%= promotion_code_partial %>
+                              </div>
+                            <% end %>
+                          </div>
+                        </div>
+                      <% end %>
 
                       <div class="row row-submit">
                         <div class="container-fluid">
@@ -193,8 +222,22 @@
                         </div>
                       </div>
 
-                      <%= partial :rent_search_form_full_v2_driver, locals: {booking_item_family: booking_item_family, driver_age_rules: driver_age_rules,
-                                                                               driver_age_rule_definition: driver_age_rule_definition} %>
+                      <% if driver_partial or promotion_code_partial %>
+                        <div class="row row-inputs">
+                          <div class="container-fluid">
+                            <% if driver_partial %>
+                              <div class="col-sm-6">
+                              <%= driver_partial %>
+                              </div>
+                            <% end %>
+                            <% if promotion_code_partial %>
+                              <div class="col-sm-6">
+                              <%= promotion_code_partial %>
+                              </div>
+                            <% end %>
+                          </div>
+                        </div>
+                      <% end %>
 
                       <div class="row row-submit">
                         <div class="container-fluid">

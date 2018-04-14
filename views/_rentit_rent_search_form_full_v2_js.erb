@@ -80,6 +80,7 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
   	init: function() {
 
   		this.setupForm();
+  		this.setupValidation();
   	  this.setupDateControls();
   	  if (selectorModel.pickupReturnPlaces) {
           this.loadPickupReturnPlaces();
@@ -90,9 +91,38 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector',
 
   	},
 
+    setupValidation: function() {
+
+  	    $('form[name=search_form]').validate({
+           rules: {
+               promotion_code: {
+                   remote: {
+                       url: '/api/check-promotion-code',
+                       type: 'post',
+                       data: {
+                           code: function() {
+                               return $('#promotion_code').val();
+                           }
+                       }
+                   }
+               }
+           },
+           messages: {
+               promotion_code: {
+                   remote: "<%=t.front_end_reservation.promotion_code_not_valid%>"
+               }
+           },
+           errorClass : 'text-danger'
+        });
+
+    },
+
     setupForm: function() {
   	  $('#formSearchSubmit').bind('click', function(){
-  	      selectorController.formSearchClick();
+  	      if ($('form[name=search_form]').valid())
+          {
+              selectorController.formSearchClick();
+          }
       })
     },
 

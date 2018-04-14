@@ -1,7 +1,3 @@
-<% if booking_item_family.driver and driver_age_rules and driver_age_rule_definition and !driver_age_rule_definition.driver_age_rules.empty? %>
-    <div class="row row-inputs">
-      <div class="container-fluid">
-        <div class="col-sm-6">
           <div class="form-group has-icon has-label selectpicker-wrapper">
             <label><%=t.front_end_reservation.driver_age%></label>
             <select name="driver_age_rule" id="driver_age_rule"
@@ -15,7 +11,3 @@
             </select>
             <span class="form-control-icon"><i class="fa fa-clock-o"></i></span>
           </div>
-        </div>
-      </div>
-    </div>
-<% end %>

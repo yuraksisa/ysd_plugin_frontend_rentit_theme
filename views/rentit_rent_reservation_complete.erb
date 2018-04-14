@@ -148,7 +148,7 @@
               </ul>
            </div>
            <div class="price">
-              <strong><%%=new Number(shopping_cart.item_cost).toFixed(2)%></strong>€
+              <%% if (product.base_price != product.price) { %><span style="text-decoration:line-through; text-color: black"><%%=new Number(product.base_price).toFixed(2)%>€</span><%% } %><strong><%%=new Number(shopping_cart.item_cost).toFixed(2)%></strong>€
            </div>
          </div>
        </div>
@@ -183,7 +183,7 @@
               </ul>
            </div>
            <div class="price">
-              <strong><%%=new Number(shopping_cart.items[idx].item_cost).toFixed(2)%></strong>€ <i class="fa fa-info-circle"></i>
+              <%% if (shopping_cart.items[idx].item_unit_cost_base != shopping_cart.items[idx].item_unit_cost) { %><span style="text-decoration:line-through; text-color: black"><%%=new Number(shopping_cart.items[idx].item_unit_cost_base*shopping_cart.items[idx].quantity).toFixed(2)%>€</span><%% } %><strong><%%=new Number(shopping_cart.items[idx].item_cost).toFixed(2)%></strong>€ <i class="fa fa-info-circle"></i>
            </div>
          </div>
        </div>
