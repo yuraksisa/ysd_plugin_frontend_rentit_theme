@@ -30,48 +30,123 @@
                         </div>
 
                         <!-- Customer -->
-
-                        <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_reservation.customer_title%></h3>
                         <form id="form-reservation" name="reservation_form" class="form-delivery" method="post">
+
+                            <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_reservation.customer_title%></h3>
+
                             <input type="hidden" name="customer_language" value="<%=session[:locale]%>"/>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <input name="customer_name" id="customer_name" title="<%=t.front_end_reservation.field_customer_name_mandatory%>" data-toggle="tooltip"
-                                                class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_customer_name%>:*">
+                                                class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_customer_name%>:*" maxlength="40">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                   <div class="form-group">
                                     <input name="customer_surname" id="customer_surname" title="<%=t.front_end_reservation.field_customer_surname_mandatory%>" data-toggle="tooltip"
-                                         class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_customer_surname%>:*">
+                                         class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_customer_surname%>:*" maxlength="40">
                                   </div>
                                 </div>
                                 <div class="col-md-6 clearfix">
                                     <div class="form-group">
                                         <input name="customer_email" id="customer_email" title="<%=t.front_end_reservation.field_customer_email_mandatory%>" data-toggle="tooltip"
-                                                class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_customer_email%>:*">
+                                                class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_customer_email%>:*" maxlength="40">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                   <div class="form-group">
                                     <input name="confirm_customer_email" id="confirm_customer_email" title="<%=t.front_end_reservation.field_customer_email_mandatory%>" data-toggle="tooltip"
-                                         class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_customer_email_confirm%>:*">
+                                         class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_customer_email_confirm%>:*" maxlength="40">
                                   </div>
                                 </div>
                                 <div class="col-md-6 clearfix">
                                     <div class="form-group">
                                      <input name="customer_phone" class="form-control alt" type="text"
-                                            placeholder="<%=t.front_end_reservation.field_customer_main_phone_number%>:*">
+                                            placeholder="<%=t.front_end_reservation.field_customer_main_phone_number%>:*" maxlength="15">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                       <input name="customer_mobile_phone" class="form-control alt" type="text"
-                                             placeholder="<%=t.front_end_reservation.field_customer_alternative_phone_number%>:">
+                                             placeholder="<%=t.front_end_reservation.field_customer_alternative_phone_number%>:" maxlength="15">
                                     </div>
                                 </div>
                             </div>
+
+                            <% if booking_item_family.driver_license %>
+                            <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_reservation.fieldset_driver%></h3>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <input name="driver_name" id="driver_name"
+                                         class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_name%>:" maxlength="40">
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <input name="driver_surname" id="driver_surname"
+                                         class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_surname%>:" maxlength="40">
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <input name="driver_document_id" id="driver_document_id"
+                                         class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_document_id%>:" maxlength="50">
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <input name="driver_date_of_birth" id="driver_date_of_birth"
+                                         class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_date_of_birth%>:" maxlength="10">
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <input name="driver_driving_license_number" id="driver_driving_license_number"
+                                         class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_driving_license_number%>:" maxlength="50">
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <input name="driver_driving_license_date" id="driver_driving_license_date"
+                                         class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_driving_license_date%>:" maxlength="10">
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <input name="driver_driving_license_country" id="driver_driving_license_country"
+                                         class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_driving_license_country%>:" maxlength="80">
+                                </div>
+                              </div>
+                            </div>
+
+                            <% end %>
+
+                            <% if booking_item_family.flight %>
+                            <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_reservation.fieldset_flight%></h3>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <input name="flight_company" id="flight_company"
+                                         class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_flight_company%>:" maxlength="80">
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <input name="flight_number" id="flight_number"
+                                         class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_flight_number%>:" maxlength="10">
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <input name="flight_time" id="flight_time"
+                                         class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_flight_time%>:" maxlength="5">
+                                </div>
+                              </div>
+                            </div>
+                            <% end %>
+
                         </form>
 
                         <!-- Additional information -->

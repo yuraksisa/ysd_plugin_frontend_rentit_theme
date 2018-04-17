@@ -34,9 +34,17 @@ module YsdPluginFrontendRentitTheme
     #
     # Return the front end skin
     #
-    def frontend_skin
+    def frontend_skin(context={})
       ['rentit']
     end
+
+    #
+    # Configure if the theme uses custom js
+    #
+    def frontend_skin_custom_js(context={})
+      false
+    end
+
 
     #
     # Page layout : Get the page layout
