@@ -75,6 +75,54 @@
                             </div>
 
                             <% if booking_item_family.driver_license %>
+                            <h3 class="block-title alt"> <i class="fa"></i><%=t.front_end_reservation.summary_page.customer_address%></h3>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <input name="street" id="street" title="<%=t.front_end_reservation.field_driver_address_street%>" data-toggle="tooltip"
+                                         class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_address_street%>:" maxlength="60">
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <input name="number" id="number" title="<%=t.front_end_reservation.field_driver_address_number%>" data-toggle="tooltip"
+                                         class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_address_number%>:"  maxlength="10">
+                                </div>
+                              </div>
+                              <div class="col-md-6 clearfix">
+                                <div class="form-group">
+                                  <input name="complement" id="complement" title="<%=t.front_end_reservation.field_driver_address_complement%>" data-toggle="tooltip"
+                                         class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_address_complement%>:"  maxlength="20">
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <input name="city" id="city" title="<%=t.front_end_reservation.field_driver_address_city%>" data-toggle="tooltip"
+                                         class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_address_city%>:"  maxlength="60">
+                                </div>
+                              </div>
+                              <div class="col-md-6 clearfix">
+                                <div class="form-group">
+                                  <input name="state" id="state" class="form-control alt" type="text"
+                                         placeholder="<%=t.front_end_reservation.field_driver_address_state%>:" maxlength="60">
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <input name="country" id="country" class="form-control alt" type="text"
+                                         placeholder="<%=t.front_end_reservation.field_driver_address_country%>:"  maxlength="50">
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <input name="zip" id="zip" class="form-control alt" type="text"
+                                         placeholder="<%=t.front_end_reservation.field_driver_address_zip%>:"  maxlength="10">
+                                </div>
+                              </div>
+                            </div>
+                            <% end %>
+
+                            <% if booking_item_family.driver_license %>
                             <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_reservation.fieldset_driver%></h3>
                             <div class="row">
                               <div class="col-md-6">
