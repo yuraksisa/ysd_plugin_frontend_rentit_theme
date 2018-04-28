@@ -317,7 +317,7 @@
 
 
         <!-- PAYMENT -->
-        <% if @booking.can_pay? and @booking.can_pay_deposit? and (@payment_methods.tpv_virtual or @payment_methods.paypal)%>
+        <% if (@booking.can_pay_deposit? or @booking.can_pay_pending? or @booking.can_pay_total?) and (@payment_methods.tpv_virtual or @payment_methods.paypal)%>
           <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_reservation.payment_title%></h3>
           <% if @booking.can_pay_deposit? %>
           <div class="alert alert-success">

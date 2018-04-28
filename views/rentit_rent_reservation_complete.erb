@@ -440,9 +440,11 @@
 <script type="text/tmpl" id="script_payment_detail">
 
   <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_reservation.payment_title%></h3>
+  <%% if (sales_process.can_pay_deposit) { %>
   <div class="alert alert-success">
     <p><%=t.front_end_reservation.payment_to_confirm_reservation(@deposit)%></p>
   </div>
+  <%% } %>
   <div class="panel-group payments-options" id="accordion" role="tablist" aria-multiselectable="true">
     <div id="make_request_container" class="panel panel-default">
       <div class="panel-heading" role="tab" id="headingThree">
@@ -454,6 +456,7 @@
       </div>
       <div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2"></div>
     </div>
+    <%% if (sales_process.can_pay_deposit || sales_process.can_pay_total) { %>
     <% if @payment_methods.tpv_virtual %>
     <div id="tpv_virtual_container" class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingThree">
@@ -488,6 +491,7 @@
           <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4"></div>
     </div>
     <% end %>
+    <%% } %>
   </div>
 </script> 
 
