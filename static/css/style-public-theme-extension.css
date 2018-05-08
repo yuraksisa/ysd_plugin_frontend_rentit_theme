@@ -85,6 +85,13 @@
     top: 27px;
 }
 
+.shopping_cart {
+    display: inline-block;
+    position: relative;
+    top: 27px;
+    left: 10px;
+}
+
 .is-sticky .translation_language {
     top: 8px;
 }
