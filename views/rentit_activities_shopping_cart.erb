@@ -12,62 +12,10 @@
         <hr class="page-divider half transparent"/>
 
         <!-- Customer -->
-
-        <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_activities.checkout_page.customer_title%></h3>
-        <form id="form-reservation" name="reservation_form" class="form-delivery" method="post">
-          <input type="hidden" name="customer_language" value="<%=session[:locale]%>"/>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <input name="customer_name" id="customer_name" title="<%=t.front_end_activities.checkout_page.field_customer_name_mandatory%>" data-toggle="tooltip"
-                       class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_customer_name%>:*">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input name="customer_surname" id="customer_surname" title="<%=t.front_end_activities.checkout_page.field_customer_surname_mandatory%>" data-toggle="tooltip"
-                       class="form-control alt" type="text" placeholder="<%=t.front_end_activities.checkout_page.field_customer_surname%>:*">
-              </div>
-            </div>
-            <div class="col-md-6 clearfix">
-              <div class="form-group">
-                <input name="customer_email" id="customer_email" title="<%=t.front_end_activities.checkout_page.field_customer_email_mandatory%>" data-toggle="tooltip"
-                       class="form-control alt" type="text" placeholder="<%=t.front_end_activities.checkout_page.field_customer_email%>:*">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input name="confirm_customer_email" id="confirm_customer_email" title="<%=t.front_end_activities.checkout_page.field_customer_email_mandatory%>" data-toggle="tooltip"
-                       class="form-control alt" type="text" placeholder="<%=t.front_end_activities.checkout_page.field_customer_email_confirm%>:*">
-              </div>
-            </div>
-            <div class="col-md-6 clearfix">
-              <div class="form-group">
-                <input name="customer_phone" class="form-control alt" type="text"
-                       placeholder="<%=t.front_end_activities.checkout_page.field_customer_main_phone_number%>:*">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input name="customer_mobile_phone" class="form-control alt" type="text"
-                       placeholder="<%=t.front_end_activities.checkout_page.field_customer_alternative_phone_number%>:">
-              </div>
-            </div>
-          </div>
-        </form>
+        <div id="customer_container"></div>
 
         <!-- Additional information -->
-        <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_activities.checkout_page.additional_information_title%></h3>
-        <form action="#" class="form-additional">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <textarea name="comments" id="comments"
-                          class="form-control alt" placeholder="<%=t.front_end_activities.checkout_page.field_comments%>" cols="30" rows="10"></textarea>
-              </div>
-            </div>
-          </div>
-        </form>
+        <div id="comments_container"></div>
 
         <!-- Payment -->
         <div id="payment_detail">
@@ -75,7 +23,7 @@
 
         <!-- Reservation buttons -->
 
-        <div class="overflowed reservation-now">
+        <div id="reservation_buttons_container" class="overflowed reservation-now" style="display: none">
           <div>
             <div class="checkbox pull-left">
               <input id="accept" type="checkbox" name="accept" title="Please accept" data-toggle="tooltip" value="checked">
@@ -104,6 +52,13 @@
   </div>
 </section>
 <!-- /PAGE WITH SIDEBAR -->
+
+<script type="text/tpml" id="script_shopping_cart_empty">
+  <h3 class="block-title alt">
+    <i class="fa"></i><%=t.front_end_activities.checkout_page.activities_information_title%>
+  </h3>
+  <p><%=t.front_end_activities.checkout_page.shopping_cart_empty%></p>
+</script>
 
 <script type="text/tpml" id="script_products_detail">
 
@@ -141,7 +96,14 @@
               </ul>
            </div>
            <div class="price pull-right">
-              <strong><%%=new Number(shopping_cart.shopping_cart_items_group_by_date_time_item_id[idx]['total']).toFixed(2)%></strong>€ <i class="fa fa-info-circle"></i>
+              <strong><%%=new Number(shopping_cart.shopping_cart_items_group_by_date_time_item_id[idx]['total']).toFixed(2)%></strong>€
+           </div>
+           <div class="list">
+               <button class="btn btn-link btn-delete-shopping-cart-item"
+                       data-item-id="<%%=firstItem.item_id%>"
+                       data-date="<%%=firstItem.date.substring(0,10)%>"
+                       data-time="<%%=firstItem.time%>"
+                       style="position:relative;left:-14px"><i class="fa fa-trash"></i> Eliminar</button>
            </div>
          </div>
        </div>
@@ -164,6 +126,70 @@
         </ul>
      </div>
   </div>
+</script>
+
+<!-- Script customer -->
+<script type="text/tmpl" id="script_customer">
+
+  <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_activities.checkout_page.customer_title%></h3>
+  <form id="form-reservation" name="reservation_form" class="form-delivery" method="post">
+    <input type="hidden" name="customer_language" value="<%=session[:locale]%>"/>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <input name="customer_name" id="customer_name" title="<%=t.front_end_activities.checkout_page.field_customer_name_mandatory%>" data-toggle="tooltip"
+                 class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_customer_name%>:*">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <input name="customer_surname" id="customer_surname" title="<%=t.front_end_activities.checkout_page.field_customer_surname_mandatory%>" data-toggle="tooltip"
+                 class="form-control alt" type="text" placeholder="<%=t.front_end_activities.checkout_page.field_customer_surname%>:*">
+        </div>
+      </div>
+      <div class="col-md-6 clearfix">
+        <div class="form-group">
+          <input name="customer_email" id="customer_email" title="<%=t.front_end_activities.checkout_page.field_customer_email_mandatory%>" data-toggle="tooltip"
+                 class="form-control alt" type="text" placeholder="<%=t.front_end_activities.checkout_page.field_customer_email%>:*">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <input name="confirm_customer_email" id="confirm_customer_email" title="<%=t.front_end_activities.checkout_page.field_customer_email_mandatory%>" data-toggle="tooltip"
+                 class="form-control alt" type="text" placeholder="<%=t.front_end_activities.checkout_page.field_customer_email_confirm%>:*">
+        </div>
+      </div>
+      <div class="col-md-6 clearfix">
+        <div class="form-group">
+          <input name="customer_phone" class="form-control alt" type="text"
+                 placeholder="<%=t.front_end_activities.checkout_page.field_customer_main_phone_number%>:*">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <input name="customer_mobile_phone" class="form-control alt" type="text"
+                 placeholder="<%=t.front_end_activities.checkout_page.field_customer_alternative_phone_number%>:">
+        </div>
+      </div>
+    </div>
+  </form>
+
+</script>
+
+<!-- Script comments -->
+
+<script type="text/tmpl" id="script_comments">
+  <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_activities.checkout_page.additional_information_title%></h3>
+  <form action="#" class="form-additional">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <textarea name="comments" id="comments"
+                    class="form-control alt" placeholder="<%=t.front_end_activities.checkout_page.field_comments%>" cols="30" rows="10"></textarea>
+        </div>
+      </div>
+    </div>
+  </form>
 </script>
 
 <!-- Script payment -->

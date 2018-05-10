@@ -37,10 +37,10 @@
                   <%if booking_item.quantity > 1%>
                     <small><%=booking_item.quantity%> x <span style="text-decoration:line-through; text-color: black"><%='%.2f' % booking_item.item_unit_cost_base%></span> <%='%.2f' % booking_item.item_unit_cost%>€</small> &nbsp; &nbsp;
                   <% end %>
-                  <% if booking_item.item_unit_cost != booking_item.item_unit_cost_base%>
+                  <% if booking_item.item_unit_cost < booking_item.item_unit_cost_base%>
                     <span style="text-decoration:line-through; text-color: black"><%= "%.2f" % (booking_item.item_unit_cost_base * booking_item.quantity)%>€</span>
                   <%end%>
-                  <strong><%='%.2f' % booking_item.item_cost%></strong>€ <i class="fa fa-info-circle"></i>
+                  <strong><%='%.2f' % booking_item.item_cost%></strong>€
                 </div>
               </div>
             </div>
@@ -67,7 +67,7 @@
                     <%if booking_extra.quantity > 1%>
                     <small><%=booking_extra.quantity%> x <%='%.2f' % booking_extra.extra_unit_cost%>€</small> &nbsp; &nbsp;
                     <% end %>
-                    <strong><%='%.2f' % booking_extra.extra_cost%></strong>€ <i class="fa fa-info-circle"></i>
+                    <strong><%='%.2f' % booking_extra.extra_cost%></strong>€
                   </div>
                </div>
             </div>

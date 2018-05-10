@@ -91,6 +91,7 @@
 
 
     <!-- BREADCRUMBS -->
+    {% unless home %}
     <% unless page.title.nil? || page.title.empty? %>
       <section class="page-section breadcrumbs text-center">
         <div class="container">
@@ -100,6 +101,7 @@
         </div>
       </section>
     <% end %>
+    {% endunless %}
     <!-- /BREADCRUMBS -->
 
     <!-- PAGE : Booking selector -->
