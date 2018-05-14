@@ -340,7 +340,7 @@
   <div class="checkbox checkbox-danger">
     <input id="checkboxl<%%=extra.code%>" type="checkbox" class="extra-checkbox" data-value="<%%=extra.code%>" <%% if (extrasInShoppingCart[extra.code] &&  extrasInShoppingCart[extra.code] > 0) { %> checked="checked" <%% } %>/>
     <label for="checkboxl<%%=extra.code%>">
-    <%%=extra.name%> <span class="pull-right"> <%%=new Number(extra.unit_price).toFixed(2)%> € </span>
+    <%%=extra.name%> <i rel="<%%=extra.code%>" class="fa fa-info-extra fa-info-circle"></i> <span class="pull-right"> <%%=new Number(extra.unit_price).toFixed(2)%> € </span>
     </label>
   </div>
   <%% } %>
