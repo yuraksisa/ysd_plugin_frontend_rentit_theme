@@ -339,11 +339,11 @@
   <%% } else if (extra.max_quantity == 1) { %>
   <div class="checkbox checkbox-danger" style="padding-top:10px; padding-bottom: 10px">
     <input id="checkboxl<%%=extra.code%>" type="checkbox" class="extra-checkbox" data-value="<%%=extra.code%>" <%% if (extrasInShoppingCart[extra.code] &&  extrasInShoppingCart[extra.code] > 0) { %> checked="checked" <%% } %>/>
-    <!--label for="checkboxl<%%=extra.code%>"-->
-    <%%=extra.name%> <i rel="<%%=extra.code%>" class="fa fa-info-extra fa-info-circle"></i> <!--span class="pull-right" style="display: inline-block"> <%%=new Number(extra.unit_price).toFixed(2)%> € </span-->
-    <!--/label-->
+    <label for="checkboxl<%%=extra.code%>">
+    </label>
+    <span style="position: relative; top: -22px"><%%=extra.name%> <i rel="<%%=extra.code%>" class="fa fa-info-extra fa-info-circle"></i></span>
   </div>
-  <span class="pull-right" style="display: inline-block; position: relative; top: -50px"> <%%=new Number(extra.unit_price).toFixed(2)%> € </span>
+  <span class="pull-right" style="position: relative; top: -74px; left: -30px"><%%=new Number(extra.unit_price).toFixed(2)%> €</span>
   <%% } %>
 
 </script>

@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.35] - 2018-05-14
+### Updated
+- Theme customization: extra detail
+
+## [0.1.34] - 2018-05-14
+### Updated
+- Theme customization: extra detail - show check extra
+
 ## [0.1.33] - 2018-05-14
 ### Updated
 - Theme customization: extra detail
