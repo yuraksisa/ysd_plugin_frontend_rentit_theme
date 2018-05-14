@@ -14,7 +14,9 @@
   <!-- CSS -->
   <link type="text/css" rel="stylesheet" href="/rentit/css/style-public.css">
   <link type="text/css" rel="stylesheet" href="/rentit/css/style-public-theme.css">
-  <!--link type="text/css" rel="stylesheet" href="/css/theme-cumin.css"-->
+  {% if theme_color_scheme && !theme_color_scheme.empty? %}
+  <link type="text/css" rel="stylesheet" href="/rentit/css/theme-{{theme_color_scheme}}.css">
+  {% endif %}
   <link type="text/css" rel="stylesheet" href="/rentit/css/style-public-theme-extension.css">
 
   <% if !page.styles_source.nil? && !page.styles_source.empty? %>
@@ -66,6 +68,7 @@
     {% if css_fixed_logo_sticky %}
     .is-sticky .logo img {
       height: auto;
+      max-width: 100%;
     }
     {% endif %}
 

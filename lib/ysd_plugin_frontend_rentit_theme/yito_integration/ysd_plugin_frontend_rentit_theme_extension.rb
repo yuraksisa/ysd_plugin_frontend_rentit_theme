@@ -21,6 +21,10 @@ module YsdPluginFrontendRentitTheme
                                                      :description => 'Slider1 background image path',
                                                      :module => :frontend_rentit_theme})
 
+      SystemConfiguration::Variable.first_or_create({:name => 'frontend.skin.rentit.theme_color_scheme'},
+                                                    {:value => '',
+                                                     :description => 'Slider1 background image path',
+                                                     :module => :frontend_rentit_theme})
 
       SystemConfiguration::Variable.first_or_create({:name => 'frontend.skin.rentit.css.header_background'},
                                                     {:value => '#fbfbfb',
@@ -117,7 +121,8 @@ module YsdPluginFrontendRentitTheme
 
         embedded = context[:app].request.params['embedded'] ? context[:app].request.params['embedded'].to_bool : false
 
-        theme_attributes = {'css_header_background' => SystemConfiguration::Variable.get_value('frontend.skin.rentit.css.header_background','#fbfbfb'),
+        theme_attributes = {'theme_color_scheme' => SystemConfiguration::Variable.get_value('frontend.skin.rentit.theme_color_scheme', ''),
+                            'css_header_background' => SystemConfiguration::Variable.get_value('frontend.skin.rentit.css.header_background','#fbfbfb'),
                             'css_menu_item_color' => SystemConfiguration::Variable.get_value('frontend.skin.rentit.css.menu_item_color','#a5abb7'),
                             'css_menu_item_hover_color' => SystemConfiguration::Variable.get_value('frontend.skin.rentit.css.menu_item_hover_color','#14181c'),
                             'css_menu_top_hover_color' => SystemConfiguration::Variable.get_value('frontend.skin.rentit.css.menu_top_hover_color','#e60000'),

@@ -132,6 +132,10 @@
     border-bottom: none;
 }
 
+.logo {
+    background-color: transparent;
+}
+
 /** 13 - spinner **/
 
 #full_loader {

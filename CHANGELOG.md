@@ -1,7 +1,11 @@
 # Changelog
 
+## [0.1.32] - 2018-05-14
+### Updated
+- Theme customization: sticky color + theme color scheme
+
 ## [0.1.31] - 2018-05-14
-### Added
+### Updated
 - Theme customization: Menu colors, sticky logo and product representation
 
 ## [0.1.30] - 2018-05-10
