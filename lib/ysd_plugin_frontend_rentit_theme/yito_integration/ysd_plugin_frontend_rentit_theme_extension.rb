@@ -27,6 +27,32 @@ module YsdPluginFrontendRentitTheme
                                                      :description => 'Slider1 background image path',
                                                      :module => :frontend_rentit_theme})
 
+      SystemConfiguration::Variable.first_or_create({:name => 'frontend.skin.rentit.css.menu_top_hover_color'},
+                                                    {:value => '#e60000',
+                                                     :description => 'Menu top hover color',
+                                                     :module => :frontend_rentit_theme})
+
+      SystemConfiguration::Variable.first_or_create({:name => 'frontend.skin.rentit.css.menu_item_color'},
+                                                    {:value => '#a5abb7',
+                                                     :description => 'Menu item hover color',
+                                                     :module => :frontend_rentit_theme})
+
+      SystemConfiguration::Variable.first_or_create({:name => 'frontend.skin.rentit.css.menu_item_hover_color'},
+                                                    {:value => '#14181c',
+                                                     :description => 'Menu item hover color',
+                                                     :module => :frontend_rentit_theme})
+
+      SystemConfiguration::Variable.first_or_create({:name => 'frontend.skin.rentit.css.submenu_background'},
+                                                    {:value => '#ffffff',
+                                                     :description => 'Submenu background color',
+                                                     :module => :frontend_rentit_theme})
+
+      SystemConfiguration::Variable.first_or_create({:name => 'frontend.skin.rentit.css.fixed_logo_sticky'},
+                                                    {:value => 'false',
+                                                     :description => 'Fixed logo on sticky',
+                                                     :module => :frontend_rentit_theme})
+
+
     end
 
     # ========== Build public layout =========
@@ -92,6 +118,11 @@ module YsdPluginFrontendRentitTheme
         embedded = context[:app].request.params['embedded'] ? context[:app].request.params['embedded'].to_bool : false
 
         theme_attributes = {'css_header_background' => SystemConfiguration::Variable.get_value('frontend.skin.rentit.css.header_background','#fbfbfb'),
+                            'css_menu_item_color' => SystemConfiguration::Variable.get_value('frontend.skin.rentit.css.menu_item_color','#a5abb7'),
+                            'css_menu_item_hover_color' => SystemConfiguration::Variable.get_value('frontend.skin.rentit.css.menu_item_hover_color','#14181c'),
+                            'css_menu_top_hover_color' => SystemConfiguration::Variable.get_value('frontend.skin.rentit.css.menu_top_hover_color','#e60000'),
+                            'css_submenu_background' => SystemConfiguration::Variable.get_value('frontend.skin.rentit.css.submenu_background','#ffffff'),
+                            'css_fixed_logo_sticky' => SystemConfiguration::Variable.get_value('frontend.skin.rentit.css.fixed_logo_sticky', 'false').to_bool,
                             'site_company_name' => SystemConfiguration::Variable.get_value('site.company.name', '.'),
                             'site_company_document_id' => SystemConfiguration::Variable.get_value('site.company.document_id', '.'),
                             'site_company_phone_number' => SystemConfiguration::Variable.get_value('site.company.phone_number', '.'),

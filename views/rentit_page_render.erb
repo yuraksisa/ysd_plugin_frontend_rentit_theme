@@ -26,11 +26,49 @@
   <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800">
 
   <style type="text/css">
+
     {% if css_header_background %}
     .header .header-wrapper {
       background-color: {{ css_header_background }};
     }
     {% endif %}
+
+    {% if css_menu_item_color %}
+      .sf-menu a {
+        color: {{ css_menu_item_color }};
+      }
+    {% endif %}
+
+    {% if css_menu_item_hover_color %}
+      .sf-menu a:hover,
+      .sf-menu li:hover,
+      .sf-menu li.sfHover,
+      .sf-menu li.sfHover > a,
+      .sf-menu li.active,
+      .sf-menu li.active > a {
+        color: {{ css_menu_item_hover_color }};
+      }
+    {% endif %}
+
+    {% if css_menu_top_hover_color %}
+      .sf-menu.nav > li > a:hover:before,
+      .sf-menu.nav > li > a:focus:before {
+        background-color: {{ css_menu_top_hover_color }};
+      }
+    {% endif %}
+
+    {% if css_submenu_background %}
+    .sf-menu ul li {
+      background: {{ css_submenu_background }};
+    }
+    {% endif %}
+
+    {% if css_fixed_logo_sticky %}
+    .is-sticky .logo img {
+      height: auto;
+    }
+    {% endif %}
+
   </style>
 
   <!-- Head Libs -->

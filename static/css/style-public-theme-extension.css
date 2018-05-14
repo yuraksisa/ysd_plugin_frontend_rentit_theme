@@ -110,6 +110,28 @@
     width: 100%;
 }
 
+
+.caption-text ul li,
+.caption-text ol li {
+    font-size: 14px;
+    border-bottom: none;
+    padding: 8px 0 8px 20px;
+    position: relative;
+}
+.caption-text ul li:before,
+.caption-text ol li:before {
+    content: '\f058';
+    font-family: 'FontAwesome';
+    position: absolute;
+    top: 7px;
+    left: 0;
+    color: #e60000;
+}
+
+.car-big-card .car-details ul li {
+    border-bottom: none;
+}
+
 /** 13 - spinner **/
 
 #full_loader {
