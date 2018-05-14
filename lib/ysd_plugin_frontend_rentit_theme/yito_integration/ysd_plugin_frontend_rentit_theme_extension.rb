@@ -56,7 +56,6 @@ module YsdPluginFrontendRentitTheme
                                                      :description => 'Fixed logo on sticky',
                                                      :module => :frontend_rentit_theme})
 
-
     end
 
     # ========== Build public layout =========

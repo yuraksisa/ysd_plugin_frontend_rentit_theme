@@ -322,7 +322,7 @@
 
   <%% if (extra.max_quantity > 1) { %>
   <div class="select">
-    <label for="select<%%=extra.code%>"><%%=extra.name%></label>
+    <label for="select<%%=extra.code%>"><%%=extra.name%> <i rel="<%%=extra.code%>" class="fa fa-info-extra fa-info-circle"></i></label>
     <select name="select<%%=extra.code%>" id="select<%%=extra.code%>"
           class="selectpicker input extra-select pull-right" data-live-search="false" data-width="100%"
           data-toggle="tooltip" title="Select" data-value="<%%=extra.code%>" data-container="body">

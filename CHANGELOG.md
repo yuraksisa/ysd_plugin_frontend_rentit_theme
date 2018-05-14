@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.33] - 2018-05-14
+### Updated
+- Theme customization: extra detail
+
 ## [0.1.32] - 2018-05-14
 ### Updated
 - Theme customization: sticky color + theme color scheme

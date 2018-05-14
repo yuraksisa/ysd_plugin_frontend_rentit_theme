@@ -165,8 +165,12 @@
                   <h5 class="caption-title-sub">
                      <%% if (product.base_price != product.price) { %><span style="text-decoration:line-through; text-color: black"><%%=new Number(product.base_price).toFixed(2)%>€</span><%% } %> <%%=new Number(product.price).toFixed(2)%>€
                   </h5>
-                  <div class="caption-text">
-                    <%%=product.description%>
+                  <div class="car-big-card alt" style="border: none">
+                    <div class="caption-text car-details" style="margin: 0">
+                          <ul>
+                            <%%=product.description%>
+                          </ul>
+                    </div>
                   </div>
 
                   <% if booking_item_family and booking_item_family.frontend == :shopcart %>

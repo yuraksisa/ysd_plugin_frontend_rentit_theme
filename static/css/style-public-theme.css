@@ -5955,6 +5955,7 @@ input[type=checkbox] {
     padding: 8px 0 8px 20px;
     position: relative;
 }
+
 .car-big-card .car-details ul li:before {
     content: '\f058';
     font-family: 'FontAwesome';
