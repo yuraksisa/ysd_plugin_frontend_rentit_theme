@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.36] - 2018-05-25
+### Updated
+- Plans refactoring
+
 ## [0.1.35] - 2018-05-14
 ### Updated
 - Theme customization: extra detail

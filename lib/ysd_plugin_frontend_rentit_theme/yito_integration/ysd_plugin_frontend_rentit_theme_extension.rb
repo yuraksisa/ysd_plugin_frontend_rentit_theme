@@ -94,7 +94,7 @@ module YsdPluginFrontendRentitTheme
                              end
 
         # Check if show shopping cart
-        renting_plan, activities_plan = context[:app].mybooking_plan
+        renting_plan, activities_plan = context[:app].mybooking_plan_type
         only_activities = (activities_plan and !renting_plan)
         full_own_menu = (activities_plan and renting_plan and SystemConfiguration::Variable.get_value('booking.frontend.activities_menu','false').to_bool)
         show_shopping_cart = ((only_activities or (full_own_menu and !primary_secondary_links_menu)) and !context[:app].activities_summaries_pages?)
