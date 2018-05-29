@@ -120,7 +120,7 @@ module YsdPluginFrontendRentitTheme
 
         embedded = context[:app].request.params['embedded'] ? context[:app].request.params['embedded'].to_bool : false
 
-        theme_attributes = {'theme_color_scheme' => SystemConfiguration::Variable.get_value('frontend.skin.rentit.theme_color_scheme', ''),
+        theme_attributes = {'theme_color_scheme' => SystemConfiguration::Variable.get_value('frontend.skin.rentit.theme_color_scheme', 'red-1'),
                             'css_header_background' => SystemConfiguration::Variable.get_value('frontend.skin.rentit.css.header_background','#fbfbfb'),
                             'css_menu_item_color' => SystemConfiguration::Variable.get_value('frontend.skin.rentit.css.menu_item_color','#a5abb7'),
                             'css_menu_item_hover_color' => SystemConfiguration::Variable.get_value('frontend.skin.rentit.css.menu_item_hover_color','#14181c'),

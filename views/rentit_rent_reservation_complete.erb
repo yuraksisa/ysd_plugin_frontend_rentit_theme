@@ -38,83 +38,102 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label><%=t.front_end_reservation.field_customer_name%></label>
                                         <input name="customer_name" id="customer_name" title="<%=t.front_end_reservation.field_customer_name_mandatory%>" data-toggle="tooltip"
                                                 class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_customer_name%>:*" maxlength="40">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                   <div class="form-group">
+                                    <label><%=t.front_end_reservation.field_customer_surname%></label>
                                     <input name="customer_surname" id="customer_surname" title="<%=t.front_end_reservation.field_customer_surname_mandatory%>" data-toggle="tooltip"
                                          class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_customer_surname%>:*" maxlength="40">
                                   </div>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-6 clearfix">
                                     <div class="form-group">
+                                        <label><%=t.front_end_reservation.field_customer_email%></label>
                                         <input name="customer_email" id="customer_email" title="<%=t.front_end_reservation.field_customer_email_mandatory%>" data-toggle="tooltip"
                                                 class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_customer_email%>:*" maxlength="40">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                   <div class="form-group">
+                                    <label><%=t.front_end_reservation.field_customer_email_confirm%></label>
                                     <input name="confirm_customer_email" id="confirm_customer_email" title="<%=t.front_end_reservation.field_customer_email_mandatory%>" data-toggle="tooltip"
                                          class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_customer_email_confirm%>:*" maxlength="40">
                                   </div>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-6 clearfix">
                                     <div class="form-group">
-                                     <input name="customer_phone" class="form-control alt" type="text"
+                                      <label><%=t.front_end_reservation.field_customer_main_phone_number%></label>
+                                      <input name="customer_phone" class="form-control alt" type="text"
+                                            title="<%=t.front_end_reservation.field_customer_main_phone_number%>"
                                             placeholder="<%=t.front_end_reservation.field_customer_main_phone_number%>:*" maxlength="15">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                      <label><%=t.front_end_reservation.field_customer_alternative_phone_number%></label>
                                       <input name="customer_mobile_phone" class="form-control alt" type="text"
+                                             title="<%=t.front_end_reservation.field_customer_alternative_phone_number%>"
                                              placeholder="<%=t.front_end_reservation.field_customer_alternative_phone_number%>:" maxlength="15">
                                     </div>
                                 </div>
                             </div>
 
                             <% if booking_item_family.driver_license %>
-                            <h3 class="block-title alt"> <i class="fa"></i><%=t.front_end_reservation.summary_page.customer_address%></h3>
+                            <h3 class="block-title alt" style="margin-top:1em"> <i class="fa"></i><%=t.front_end_reservation.summary_page.customer_address%></h3>
                             <div class="row">
                               <div class="col-md-6">
                                 <div class="form-group">
+                                  <label><%=t.front_end_reservation.field_driver_address_street%></label>
                                   <input name="street" id="street" title="<%=t.front_end_reservation.field_driver_address_street%>" data-toggle="tooltip"
                                          class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_address_street%>:" maxlength="60">
                                 </div>
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
+                                  <label><%=t.front_end_reservation.field_driver_address_number%></label>
                                   <input name="number" id="number" title="<%=t.front_end_reservation.field_driver_address_number%>" data-toggle="tooltip"
                                          class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_address_number%>:"  maxlength="10">
                                 </div>
                               </div>
                               <div class="col-md-6 clearfix">
                                 <div class="form-group">
+                                  <label><%=t.front_end_reservation.field_driver_address_complement%></label>
                                   <input name="complement" id="complement" title="<%=t.front_end_reservation.field_driver_address_complement%>" data-toggle="tooltip"
                                          class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_address_complement%>:"  maxlength="20">
                                 </div>
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
+                                  <label><%=t.front_end_reservation.field_driver_address_city%></label>
                                   <input name="city" id="city" title="<%=t.front_end_reservation.field_driver_address_city%>" data-toggle="tooltip"
                                          class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_address_city%>:"  maxlength="60">
                                 </div>
                               </div>
                               <div class="col-md-6 clearfix">
                                 <div class="form-group">
+                                  <label><%=t.front_end_reservation.field_driver_address_state%></label>
                                   <input name="state" id="state" class="form-control alt" type="text"
                                          placeholder="<%=t.front_end_reservation.field_driver_address_state%>:" maxlength="60">
                                 </div>
                               </div>
                               <div class="col-md-3">
                                 <div class="form-group">
+                                  <label><%=t.front_end_reservation.field_driver_address_country%></label>
                                   <input name="country" id="country" class="form-control alt" type="text"
                                          placeholder="<%=t.front_end_reservation.field_driver_address_country%>:"  maxlength="50">
                                 </div>
                               </div>
                               <div class="col-md-3">
                                 <div class="form-group">
+                                  <label><%=t.front_end_reservation.field_driver_address_zip%></label>
                                   <input name="zip" id="zip" class="form-control alt" type="text"
                                          placeholder="<%=t.front_end_reservation.field_driver_address_zip%>:"  maxlength="10">
                                 </div>
@@ -123,46 +142,53 @@
                             <% end %>
 
                             <% if booking_item_family.driver_license %>
-                            <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_reservation.fieldset_driver%></h3>
+                            <h3 class="block-title alt" style="margin-top:1em"><i class="fa"></i><%=t.front_end_reservation.fieldset_driver%></h3>
                             <div class="row">
                               <div class="col-md-6">
                                 <div class="form-group">
+                                  <label><%=t.front_end_reservation.field_driver_name%></label>
                                   <input name="driver_name" id="driver_name"
                                          class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_name%>:" maxlength="40">
                                 </div>
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
+                                  <label><%=t.front_end_reservation.field_driver_surname%></label>
                                   <input name="driver_surname" id="driver_surname"
                                          class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_surname%>:" maxlength="40">
                                 </div>
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
+                                  <label><%=t.front_end_reservation.field_driver_document_id%></label>
                                   <input name="driver_document_id" id="driver_document_id"
                                          class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_document_id%>:" maxlength="50">
                                 </div>
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
+                                  <label><%=t.front_end_reservation.field_driver_date_of_birth%></label>
                                   <input name="driver_date_of_birth" id="driver_date_of_birth"
                                          class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_date_of_birth%>:" maxlength="10">
                                 </div>
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
+                                  <label><%=t.front_end_reservation.field_driver_driving_license_number%></label>
                                   <input name="driver_driving_license_number" id="driver_driving_license_number"
                                          class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_driving_license_number%>:" maxlength="50">
                                 </div>
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
+                                  <label><%=t.front_end_reservation.field_driver_driving_license_date%></label>
                                   <input name="driver_driving_license_date" id="driver_driving_license_date"
                                          class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_driving_license_date%>:" maxlength="10">
                                 </div>
                               </div>
                               <div class="col-md-12">
                                 <div class="form-group">
+                                  <label><%=t.front_end_reservation.field_driver_driving_license_country%></label>
                                   <input name="driver_driving_license_country" id="driver_driving_license_country"
                                          class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_driver_driving_license_country%>:" maxlength="80">
                                 </div>
@@ -172,22 +198,25 @@
                             <% end %>
 
                             <% if booking_item_family.flight %>
-                            <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_reservation.fieldset_flight%></h3>
+                            <h3 class="block-title alt" style="margin-top:1em"><i class="fa"></i><%=t.front_end_reservation.fieldset_flight%></h3>
                             <div class="row">
                               <div class="col-md-12">
                                 <div class="form-group">
+                                  <label><%=t.front_end_reservation.field_flight_company%></label>
                                   <input name="flight_company" id="flight_company"
                                          class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_flight_company%>:" maxlength="80">
                                 </div>
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
+                                  <label><%=t.front_end_reservation.field_flight_number%></label>
                                   <input name="flight_number" id="flight_number"
                                          class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_flight_number%>:" maxlength="10">
                                 </div>
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
+                                  <label><%=t.front_end_reservation.field_flight_time%></label>
                                   <input name="flight_time" id="flight_time"
                                          class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_flight_time%>:" maxlength="5">
                                 </div>
@@ -203,6 +232,7 @@
                           <div class="row">
                             <div class="col-md-12">
                               <div class="form-group">
+                                  <label><%=t.front_end_reservation.field_comments%></label>
                                   <textarea name="comments" id="comments"
                                      class="form-control alt" placeholder="<%=t.front_end_reservation.field_comments%>" cols="30" rows="10"></textarea>
                               </div>

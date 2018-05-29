@@ -137,37 +137,53 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <input name="customer_name" id="customer_name" title="<%=t.front_end_activities.checkout_page.field_customer_name_mandatory%>" data-toggle="tooltip"
-                 class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.field_customer_name%>:*">
+          <label><%=t.front_end_activities.checkout_page.field_customer_name%></label>
+          <input name="customer_name" id="customer_name"
+                 title="<%=t.front_end_activities.checkout_page.field_customer_name_mandatory%>" data-toggle="tooltip"
+                 class="form-control alt" type="text"
+                 placeholder="<%=t.front_end_activities.checkout_page.field_customer_name%>:*">
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <input name="customer_surname" id="customer_surname" title="<%=t.front_end_activities.checkout_page.field_customer_surname_mandatory%>" data-toggle="tooltip"
-                 class="form-control alt" type="text" placeholder="<%=t.front_end_activities.checkout_page.field_customer_surname%>:*">
+          <label><%=t.front_end_reservation.field_customer_surname%></label>
+          <input name="customer_surname" id="customer_surname"
+                 title="<%=t.front_end_activities.checkout_page.field_customer_surname_mandatory%>" data-toggle="tooltip"
+                 class="form-control alt" type="text"
+                 placeholder="<%=t.front_end_activities.checkout_page.field_customer_surname%>:*">
         </div>
       </div>
       <div class="col-md-6 clearfix">
         <div class="form-group">
-          <input name="customer_email" id="customer_email" title="<%=t.front_end_activities.checkout_page.field_customer_email_mandatory%>" data-toggle="tooltip"
-                 class="form-control alt" type="text" placeholder="<%=t.front_end_activities.checkout_page.field_customer_email%>:*">
+          <label><%=t.front_end_reservation.field_customer_email%></label>
+          <input name="customer_email" id="customer_email"
+                 title="<%=t.front_end_activities.checkout_page.field_customer_email_mandatory%>" data-toggle="tooltip"
+                 class="form-control alt" type="text"
+                 placeholder="<%=t.front_end_activities.checkout_page.field_customer_email%>:*">
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <input name="confirm_customer_email" id="confirm_customer_email" title="<%=t.front_end_activities.checkout_page.field_customer_email_mandatory%>" data-toggle="tooltip"
-                 class="form-control alt" type="text" placeholder="<%=t.front_end_activities.checkout_page.field_customer_email_confirm%>:*">
+          <label><%=t.front_end_reservation.field_customer_email_confirm%></label>
+          <input name="confirm_customer_email" id="confirm_customer_email"
+                 title="<%=t.front_end_activities.checkout_page.field_customer_email_mandatory%>" data-toggle="tooltip"
+                 class="form-control alt" type="text"
+                 placeholder="<%=t.front_end_activities.checkout_page.field_customer_email_confirm%>:*">
         </div>
       </div>
       <div class="col-md-6 clearfix">
         <div class="form-group">
+          <label><%=t.front_end_reservation.field_customer_main_phone_number%></label>
           <input name="customer_phone" class="form-control alt" type="text"
+                 title="<%=t.front_end_reservation.field_customer_main_phone_number%>"
                  placeholder="<%=t.front_end_activities.checkout_page.field_customer_main_phone_number%>:*">
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
+          <label><%=t.front_end_reservation.field_customer_alternative_phone_number%></label>
           <input name="customer_mobile_phone" class="form-control alt" type="text"
+                 title="<%=t.front_end_reservation.field_customer_alternative_phone_number%>"
                  placeholder="<%=t.front_end_activities.checkout_page.field_customer_alternative_phone_number%>:">
         </div>
       </div>
@@ -184,6 +200,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
+          <label><%=t.front_end_activities.checkout_page.field_comments%></label>
           <textarea name="comments" id="comments"
                     class="form-control alt" placeholder="<%=t.front_end_activities.checkout_page.field_comments%>" cols="30" rows="10"></textarea>
         </div>

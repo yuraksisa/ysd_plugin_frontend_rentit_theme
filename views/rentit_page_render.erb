@@ -14,7 +14,7 @@
   <!-- CSS -->
   <link type="text/css" rel="stylesheet" href="/rentit/css/style-public.css">
   <link type="text/css" rel="stylesheet" href="/rentit/css/style-public-theme.css">
-  {% if theme_color_scheme && !theme_color_scheme.empty? %}
+  {% if !theme_color_scheme.nil? && !(theme_color_scheme.empty?) %}
   <link type="text/css" rel="stylesheet" href="/rentit/css/theme-{{theme_color_scheme}}.css">
   {% endif %}
   <link type="text/css" rel="stylesheet" href="/rentit/css/style-public-theme-extension.css">
