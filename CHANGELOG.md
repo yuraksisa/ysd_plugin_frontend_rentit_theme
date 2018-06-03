@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.40] - 2018-06-03
+### Updated
+- Summary: Update extra fields
+
 ## [0.1.39] - 2018-05-29
 ### Updated
 - Translations

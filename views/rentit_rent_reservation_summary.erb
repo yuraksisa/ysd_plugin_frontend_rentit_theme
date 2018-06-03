@@ -191,6 +191,96 @@
                 </div>
               </div>
             <% end %>
+
+            <% if @booking_item_family.driver_license %>
+              <h3 class="block-title alt" style="margin-top:1em"><i class="fa"></i><%=t.front_end_reservation.summary_page.fieldset_driver%></h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label><%=t.front_end_reservation.summary_page.driver_name%></label>
+                    <input name="driver_name" id="driver_name"
+                           class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.summary_page.driver_name%>:" maxlength="40"
+                           value="<%=@booking.driver_name%>">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label><%=t.front_end_reservation.summary_page.driver_surname%></label>
+                    <input name="driver_surname" id="driver_surname"
+                           class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.summary_page.driver_surname%>:" maxlength="40"
+                           value="<%=@booking.driver_surname%>">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label><%=t.front_end_reservation.summary_page.driver_document_id%></label>
+                    <input name="driver_document_id" id="driver_document_id"
+                           class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.summary_page.driver_document_id%>:" maxlength="50"
+                           value="<%=@booking.driver_document_id%>">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label><%=t.front_end_reservation.summary_page.driver_date_of_birth%></label>
+                    <input name="driver_date_of_birth" id="driver_date_of_birth"
+                           class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.summary_page.driver_date_of_birth%>:" maxlength="10">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label><%=t.front_end_reservation.summary_page.driver_driving_license_number%></label>
+                    <input name="driver_driving_license_number" id="driver_driving_license_number"
+                           class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.summary_page.driver_driving_license_number%>:" maxlength="50"
+                           value="<%=@booking.driver_driving_license_number%>">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label><%=t.front_end_reservation.summary_page.driver_driving_license_date%></label>
+                    <input name="driver_driving_license_date" id="driver_driving_license_date"
+                           class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.summary_page.driver_driving_license_date%>:" maxlength="10">
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label><%=t.front_end_reservation.summary_page.driver_driving_license_country%></label>
+                    <input name="driver_driving_license_country" id="driver_driving_license_country"
+                           class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.summary_page.driver_driving_license_country%>:" maxlength="80"
+                           value="<%=@booking.driver_driving_license_country%>">
+                  </div>
+                </div>
+              </div>
+
+            <% end %>
+
+            <% if @booking_item_family.flight %>
+              <h3 class="block-title alt" style="margin-top:1em"><i class="fa"></i><%=t.front_end_reservation.summary_page.fieldset_flight%></h3>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label><%=t.front_end_reservation.summary_page.flight_company%></label>
+                    <input name="flight_company" id="flight_company"
+                           class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.summary_page.flight_company%>:" maxlength="80" value="<%=@booking.flight_company%>">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label><%=t.front_end_reservation.summary_page.flight_number%></label>
+                    <input name="flight_number" id="flight_number"
+                           class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.summary_page.flight_number%>:" maxlength="10" value="<%=@booking.flight_number%>">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label><%=t.front_end_reservation.summary_page.flight_time%></label>
+                    <input name="flight_time" id="flight_time"
+                           class="form-control alt" type="text" placeholder="<%=t.front_end_reservation.summary_page.flight_time%>:" maxlength="5" value="<%=@booking.flight_time%>">
+                  </div>
+                </div>
+              </div>
+              <br>
+            <% end %>
+
             <% if @booking_item_family.named_resources or @booking_item_family.height or @booking_item_family.weight %>
               <br>
               <h3 class="block-title alt"> <i class="fa"></i><%=t.front_end_reservation.summary_page.data_of_the_participants%></h3>
