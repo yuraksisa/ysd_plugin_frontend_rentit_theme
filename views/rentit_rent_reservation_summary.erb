@@ -469,7 +469,7 @@
         <!-- PAYMENT -->
         <% if (@booking.can_pay_deposit? or @booking.can_pay_pending? or @booking.can_pay_total?) and (@payment_methods.tpv_virtual or @payment_methods.paypal)%>
           <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_reservation.payment_title%></h3>
-          <% if @booking.can_pay_deposit? %>
+          <% if @booking.can_pay_deposit? and !@booking.can_pay_total? %>
           <div class="alert alert-success">
             <p><%=t.front_end_reservation.payment_to_confirm_reservation(@deposit, "(%.2f #{@currency})" % @booking.booking_amount)%></p>
           </div>
@@ -483,6 +483,11 @@
                     <span class="dot"></span> <%=t.front_end_reservation.credit_card_payment%>
                   </a>
                   <span class="overflowed pull-right">
+                    <img src="/rentit/img/preview/payments/mastercard-2.jpg" alt=""/>
+                    <img src="/rentit/img/preview/payments/visa-2.jpg" alt=""/>
+                    <!--img src="/rentit/img/preview/payments/american-express-2.jpg" alt=""/>
+                    <img src="/rentit/img/preview/payments/discovery-2.jpg" alt=""/>
+                    <img src="/rentit/img/preview/payments/eheck-2.jpg" alt=""/-->
                   </span>
                 </h4>
               </div>
@@ -497,11 +502,32 @@
                     <span class="dot"></span> <%=t.front_end_reservation.paypal_payment%>
                   </a>
                   <span class="overflowed pull-right">
+                     <img src="/rentit/img/preview/payments/paypal-2.jpg" alt="">
                   </span>
                 </h4>
               </div>
               <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4"></div>
             </div>
+            <% end %>
+
+            <% if @booking.can_pay_deposit? and @booking.can_pay_total? %>
+              <div id="payment_amount_container" <%if @payment_methods.paypal and @payment_methods.tpv_virtual%>style="display:none"<%end%>>
+                <br>
+                <h4><%=t.front_end_reservation.payment_amount%></h4>
+                <br>
+                <form id="payment_amount_form" class="form-additional">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input type="radio" value="deposit" name="payment"/> <label><%=t.front_end_reservation.payment_amount_deposit%> (<%=@deposit%> %)</label>
+                      </div>
+                      <div class="form-group">
+                        <input type="radio" value="total" name="payment">  <label><%=t.front_end_reservation.payment_amount_total%></label>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
             <% end %>
 
             <div class="overflowed reservation-now">

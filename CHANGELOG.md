@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.41] - 2018-06-10
+### Updated
+- Payment: deposit - total - deposit and total
+
 ## [0.1.40] - 2018-06-03
 ### Updated
 - Summary: Update extra fields
