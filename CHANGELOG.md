@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.43] - 2018-07-03
+### Updated
+- select2 integration
+
 ## [0.1.42] - 2018-07-01
 ### Updated
 - Preview images
