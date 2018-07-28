@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.44] - 2018-07-28
+### Updated
+- Dates literals depending on business
+
 ## [0.1.43] - 2018-07-03
 ### Updated
 - select2 integration

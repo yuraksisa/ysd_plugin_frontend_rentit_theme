@@ -81,14 +81,14 @@
                                         <% end %>
 
                                         <div class="form-group has-icon has-label">
-                                            <label for="date_from"><%=t.front_end_reservation.date_from%></label>
+                                            <label for="date_from"><%= BookingDataSystem.r18n.t.booking_business_literals.starting_date[booking_item_family.starting_date.to_s]['date_from'] %></label>
                                             <input type="text" class="form-control" id="date_from" name="date_from" placeholder="dd/mm/yyyy">
                                             <span class="form-control-icon"><i class="fa fa-calendar"></i></span>
                                         </div>
 
                                         <% if booking_item_family and booking_item_family.time_to_from %>
                                         <div class="form-group has-icon has-label selectpicker-wrapper">
-                                            <label><%=t.front_end_reservation.time_from%></label>
+                                            <label><%= BookingDataSystem.r18n.t.booking_business_literals.starting_date[booking_item_family.starting_date.to_s]['time_from'] %></label>
                                             <select
                                                     class="selectpicker input-price" data-live-search="true" data-width="100%" id="time_from" name="time_from"
                                                     data-toggle="tooltip" title="Select" data-container="body">
@@ -100,14 +100,14 @@
                                         <% end %>
 
                                         <div class="form-group has-icon has-label">
-                                            <label for="formSearchUpDate3"><%=t.front_end_reservation.date_to%></label>
+                                            <label for="formSearchUpDate3"><%= BookingDataSystem.r18n.t.booking_business_literals.starting_date[booking_item_family.starting_date.to_s]['date_to'] %></label>
                                             <input type="text" class="form-control" id="date_to" name="date_to" placeholder="dd/mm/yyyy">
                                             <span class="form-control-icon"><i class="fa fa-calendar"></i></span>
                                         </div>
 
                                         <% if booking_item_family and booking_item_family.time_to_from %>
                                         <div class="form-group has-icon has-label selectpicker-wrapper">
-                                            <label><%=t.front_end_reservation.time_to%></label>
+                                            <label><%= BookingDataSystem.r18n.t.booking_business_literals.starting_date[booking_item_family.starting_date.to_s]['time_to'] %></label>
                                             <select
                                                     class="selectpicker input-price" data-live-search="true" data-width="100%" id="time_to" name="time_to"
                                                     data-toggle="tooltip" title="Select" data-container="body">
