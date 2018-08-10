@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.45] - 2018-08-10
+### Updated
+- Available attribute in product search taking into account stock_control
+
 ## [0.1.44] - 2018-07-28
 ### Updated
 - Dates literals depending on business

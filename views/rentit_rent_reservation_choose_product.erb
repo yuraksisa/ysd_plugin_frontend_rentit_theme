@@ -178,7 +178,7 @@
                       <div class="car-listing-selector">
                         <select class="selectpicker select-choose-product input pull-right" data-value="<%%=product.code%>" data-live-search="false"
               data-toggle="tooltip" title="Select" data-container="body">>
-                              <%% for (var idx=0;idx<=(product.stock-product.busy);idx++) { %>
+                              <%% for (var idx=0;idx<=(product.available);idx++) { %>
                               <option value="<%%=idx%>"
                               <%% if (productsInShoppingCart[product.code] && productsInShoppingCart[product.code] == idx) { %>
                               selected="selected"
