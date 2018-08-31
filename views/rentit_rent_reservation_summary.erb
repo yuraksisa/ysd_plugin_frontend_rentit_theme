@@ -473,6 +473,10 @@
           <div class="alert alert-success">
             <p><%=t.front_end_reservation.payment_to_confirm_reservation(@deposit, "(%.2f #{@currency})" % @booking.booking_amount)%></p>
           </div>
+          <% elsif @booking.can_pay_pending? %>
+            <div class="alert alert-warning">
+              <p><%=t.front_end_reservation.payment_pending_title("(%.2f #{@currency})" % @booking.total_pending)%></p>
+            </div>
           <% end %>
           <div class="panel-group payments-options" id="accordion" role="tablist" aria-multiselectable="true">
             <% if @payment_methods.tpv_virtual %>
@@ -485,9 +489,6 @@
                   <span class="overflowed pull-right">
                     <img src="/rentit/img/preview/payments/mastercard-2.jpg" alt=""/>
                     <img src="/rentit/img/preview/payments/visa-2.jpg" alt=""/>
-                    <!--img src="/rentit/img/preview/payments/american-express-2.jpg" alt=""/>
-                    <img src="/rentit/img/preview/payments/discovery-2.jpg" alt=""/>
-                    <img src="/rentit/img/preview/payments/eheck-2.jpg" alt=""/-->
                   </span>
                 </h4>
               </div>

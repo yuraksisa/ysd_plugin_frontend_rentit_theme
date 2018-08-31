@@ -38,7 +38,7 @@
                     <div class="list">
                       <ul>
                         <li class="title">
-                          <h2><%=product.name%></h2>
+                          <h2><%=first_order_item.item_description_customer_translation || first_order_item.item_description%></h2>
                         </li>
                         <br>
                         <span><strong><%=first_order_item.date.strftime('%d-%m-%Y')%></strong></span>
@@ -308,17 +308,13 @@
         <!-- PAYMENT -->
         <% if (@order.can_pay_deposit? or @order.can_pay_pending? or @order.can_pay_total?) and (@payment_methods.tpv_virtual or @payment_methods.paypal)%>
           <h3 class="block-title alt"><i class="fa fa-angle-down"></i><%=t.front_end_activities.order_page.payment_group.title%></h3>
-          <% if @order.can_pay_deposit? %>
+          <% if @order.can_pay_deposit? and !@order.can_pay_total? %>
             <div class="alert alert-success">
               <p><%=t.front_end_activities.order_page.payment_group.deposit_title(@deposit, "(%.2f #{@currency})" % @order.reservation_amount)%></p>
             </div>
           <% elsif @order.can_pay_pending? %>
-            <div class="alert alert-success">
+            <div class="alert alert-warning">
               <p><%=t.front_end_activities.order_page.payment_group.pending_title("(%.2f #{@currency})" % @order.total_pending)%></p>
-            </div>
-          <% elsif @order.can_pay_total? %>
-            <div class="alert alert-success">
-              <p><%=t.front_end_activities.order_page.payment_group.total_title%></p>
             </div>
           <% end %>
           <div class="panel-group payments-options" id="accordion" role="tablist" aria-multiselectable="true">
@@ -330,7 +326,9 @@
                       <span class="dot"></span> <%=t.front_end_reservation.credit_card_payment%>
                     </a>
                     <span class="overflowed pull-right">
-                  </span>
+                      <img src="/rentit/img/preview/payments/mastercard-2.jpg" alt=""/>
+                      <img src="/rentit/img/preview/payments/visa-2.jpg" alt=""/>
+                    </span>
                   </h4>
                 </div>
                 <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3"></div>
@@ -344,10 +342,31 @@
                       <span class="dot"></span> <%=t.front_end_reservation.paypal_payment%>
                     </a>
                     <span class="overflowed pull-right">
-                  </span>
+                      <img src="/rentit/img/preview/payments/paypal-2.jpg" alt="">
+                    </span>
                   </h4>
                 </div>
                 <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4"></div>
+              </div>
+            <% end %>
+
+            <% if @order.can_pay_deposit? and @order.can_pay_total? %>
+              <div id="payment_amount_container" <%if @payment_methods.paypal and @payment_methods.tpv_virtual%>style="display:none"<%end%>>
+                <br>
+                <h4><%=t.front_end_reservation.payment_amount%></h4>
+                <br>
+                <form id="payment_amount_form" class="form-additional">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input type="radio" value="deposit" name="payment"/> <label><%=t.front_end_reservation.payment_amount_deposit%> (<%=@deposit%> %)</label>
+                      </div>
+                      <div class="form-group">
+                        <input type="radio" value="total" name="payment">  <label><%=t.front_end_reservation.payment_amount_total%></label>
+                      </div>
+                    </div>
+                  </div>
+                </form>
               </div>
             <% end %>
 

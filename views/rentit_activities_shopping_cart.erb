@@ -215,13 +215,9 @@
 
   <h3 class="block-title alt"><i class="fa"></i><%=t.front_end_activities.checkout_page.payment_title%></h3>
 
-  <%% if (shopping_cart.can_pay_deposit) { %>
+  <%% if (shopping_cart.can_pay_deposit && !shopping_cart.can_pay_total) { %>
     <div class="alert alert-success">
       <p><%=t.front_end_activities.checkout_page.payment_group.deposit_title(@deposit)%></p>
-    </div>
-  <%% } else if (shopping_cart.can_pay_total) { %>
-    <div class="alert alert-success">
-      <p><%=t.front_end_activities.checkout_page.payment_group.total_title%></p>
     </div>
   <%% } %>
 
@@ -270,4 +266,23 @@
     <% end %>
     <%% } %>
   </div>
+
+  <div id="payment_amount_container" style="display: none">
+    <h4><%=t.front_end_reservation.payment_amount%></h4>
+    <br>
+    <form id="payment_amount_form" class="form-additional">
+      <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+            <input type="radio" value="deposit" name="payment"/> <label><%=t.front_end_activities.checkout_page.payment_group.payment_amount_deposit%> (<%=@deposit%> %)</label>
+            </div>
+            <div class="form-group">
+            <input type="radio" value="total" name="payment">  <label><%=t.front_end_activities.checkout_page.payment_group.payment_amount_total%></label>
+            </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
 </script>
