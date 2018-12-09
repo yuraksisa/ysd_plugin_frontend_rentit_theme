@@ -27,6 +27,7 @@ requirejs(['jquery',
            'datejs',
            'YSDAbstractDataSource',         // DataSource
            'YSDRemoteDataSource',           // DataSource
+           'YSDMemoryDataSource',           // DataSource
            'YSDDataAdapter',                // Data adapter
            'YSDListSelectorModel',          // Select an element from a list (checkboxes)
            'YSDSelectSelector',             // Select an element from a select
