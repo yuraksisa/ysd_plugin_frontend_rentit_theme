@@ -11,17 +11,18 @@ define(function(){
 	}
 	
 	var self = this;
-	
-    this.dataSource.addListener('data_available', 
-      function(event) {
+
+	this.eventListener = function(event) {
         switch (event.type) {
-  	      case 'data_available' :
-  	        self.data = event.data;
-  	        self.view.notify('data_changed');
-  	        break;
+            case 'data_available' :
+                self.data = event.data;
+                self.view.notify('data_changed');
+                break;
         }
-    });	
-	
+    };
+
+    this.dataSource.addListener('data_available', this.eventListener);
+
 	this.retrieveData = function() { 	
 	  this.dataSource.retrieveData();	
 	}
@@ -30,7 +31,11 @@ define(function(){
 	  this.value = value;
 	  this.view.notify('value_changed');	
 	}
-	
+
+	this.removeEventListener = function() {
+		this.dataSource.removeListener('data_available', this.eventListener);
+	}
+
   }
 
   return YSDListSelectorModel;	
