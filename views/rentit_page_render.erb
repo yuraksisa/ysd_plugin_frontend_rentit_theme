@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="<%=session[:locale] || 'es'%>">
 <head>
   <meta charset="utf-8">
   <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title><%=site_title%></title>
+  <title><%=page.title%></title>
+  <meta name="description" content="<%=page.description%>">
+  <meta name="keywords" content="<%=page.keywords%>">
+  <meta name="summary" content="<%=page.summary%>">
+  <% if page.canonical_url %>
+  <link rel="canonical" href="<%=page.canonical_url%>">
+  <% end %>
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="<%=page.title%>">
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="<%=page.description%>">
+  <!--meta property="og:url" content=""-->
+  <meta property="og:locale" content="<%=session[:locale] || 'es'%>">  
 
   <!-- JS -->
   <script type="text/javascript" src="/rentit/js/require.min.js"></script>
