@@ -1,0 +1,46 @@
+                        <div class="post post-short">
+                            <% if content.album and content.album.photos.size > 0 %>
+                            <div class="post-header">
+                                <div class="post-slide">
+                                    <div id="sl1">
+                                        <a class="sl1_prev" href="#"></a>
+                                        <a class="sl1_next" href="#"></a>
+                                        <div class="sl1_pagination"></div>
+                                        <div class="carousel-box">
+                                            <div class="inner">
+                                                <div class="carousel main">
+                                                    <ul>
+                                                    	<% content.album.photos.each do |photo| %>
+                                                        <li>
+                                                            <div class="sl1">
+                                                                <div class="sl1_inner">
+                                                                    <img src="<%=photo.photo_url_medium%>" alt=""
+                                                                         class="img-responsive">
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <% end %>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% end %>
+                            <div class="post-story">
+                                <h2><%= content.title %></h2>
+
+                                <div class="post-story-info">
+                                    <div class="date1"><%=content.creation_date.strftime("%d . %m . %Y")%></div>
+                                </div>
+
+                                <div class="post-story-body clearfix">
+                                    <p><%= content.excerpt if content and content.body and not content.body.empty?%> ... <a class="read-more" href="<%=format_url_with_language(content.alias)%>"><%=t.content.read_more%></a></p>
+
+                                </div>
+                                <div class="post-story-link">
+                                    <a href="<%=format_url_with_language(content.alias) %>" class="btn-default btn4">view post</a>
+                                </div>
+                            </div>
+                        </div>

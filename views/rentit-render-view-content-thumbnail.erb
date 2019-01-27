@@ -1,0 +1,22 @@
+						<% view_data[:data].each do |element_rendered| %>
+							<li class="element isotope-filter3 col-sm-4 col-xs-12">
+	                            <div class="thumb-isotope">
+	                                <div class="thumbnail clearfix">
+	                                    <a href="<%=element_rendered.alias%>" rel="prettyPhoto[mix]" title="<%=element_rendered.title%>">
+	                                        <figure>
+	                                            <% if element_rendered.photo_url_full and !element_rendered.photo_url_full.empty? %>
+	                                            <img src="<%=element_rendered.photo_url_full%>" alt="" title="Thumbnail" style="width:360px; height: 243px">
+	                                            <% else %>
+	                                            <img src="http://placehold.it/370x250" alt="" title="Thumbnail">
+	                                            <% end %>
+	                                            <em></em>
+	                                        </figure>
+	                                        <div class="caption">
+	                                            <div class="txt1"><%=element_rendered.title%></div>
+	                                            <div class="txt2"><%=element_rendered.subtitle%></div>
+	                                        </div>
+	                                    </a>
+	                                </div>
+	                            </div>
+	                        </li>
+      					<% end%>

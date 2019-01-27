@@ -1,0 +1,16 @@
+                                <div class="thumbnail clearfix">
+                                    <a href="<%=content.alias%>" rel="prettyPhoto[mix]" title="<%=content.title%>">
+                                        <figure>
+                                            <% if content.photo_url_full and !content.photo_url_full.empty? %>
+                                            <img src="<%=content.photo_url_full%>" alt="" title="Thumbnail">
+                                            <% else %>
+                                            <img src="http://placehold.it/370x250" alt="" title="Thumbnail">
+                                            <% end %>
+                                            <em></em>
+                                        </figure>
+                                        <div class="caption">
+                                            <div class="txt1"><%=content.title%></div>
+                                            <div class="txt2"><%=content.subtitle%></div>
+                                        </div>
+                                    </a>
+                                </div>

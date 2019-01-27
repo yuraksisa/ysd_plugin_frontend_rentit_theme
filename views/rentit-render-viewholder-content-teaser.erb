@@ -1,0 +1,25 @@
+			<h2><%=view.title%></h2>
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="blog_content">
+                      <%= view_body %>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+
+            <div class="pager_wrapper">
+                <ul class="pager clearfix">
+			      <% unless view.ajax_pagination %>
+			        <% if view.pagination and view_data[:summary][:total_pages] > 1 %>
+			           <% if view_data[:summary][:current_page] > 1 %>
+					 	 <li class="prev"><a href="<%=format_url_with_language("#{view_url}/page/#{view_data[:summary][:current_page]-1}")%><%=view_arguments and !view_arguments.empty? ? "/#{view_arguments}" : ''%>"><%=t.view.back_page%></a></li>
+			           <% end %>
+			           <% if view_data[:summary][:current_page] < view_data[:summary][:total_pages] %>
+			             <li class="next"><a href="<%=format_url_with_language("#{view_url}/page/#{view_data[:summary][:current_page]+1}")%><%=view_arguments and !view_arguments.empty? ? "/#{view_arguments}" : ''%>"><%=t.view.next_page%></a></li>
+			           <% end %>
+			        <% end %>
+			      <% end %>
+                </ul>
+            </div>
